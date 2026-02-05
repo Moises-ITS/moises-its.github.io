@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Moises Zuniga | Cybersecurity Portfolio</title>
+</head>
+<body>
+  
+  <div class="terminal-container">
+    <div id="terminal-content">
+        <div class="line"><span class="blue">[SYSTEM]</span> Verifying Integrity... </div>
+        <div class="line">University: <span class="green">NJIT - B.S. Computer Science</span></div>
+        <div class="line">Minor: <span class="green">Artificial Intelligence</span></div>
+        <br>
+        <div class="hero-text">WELCOME_GUEST_USER</div>
+        <p class="dim-text">Authorized Session: Zuniga, Moises [SPRING_2026]</p>
+    </div>
+
+    <div id="action-area" class="hidden">
+        <p class="menu-title">SELECT_PROTOCOL_</p>
+        <ul class="terminal-menu">
+            <li><span class="blue">1)</span> VIEW_PROJECTS</li>
+            <li><span class="blue">2)</span> CONTACT_INFO</li>
+            <li><span class="blue">3)</span> LINKEDIN</li>
+            <li><span class="blue">4)</span> GITHUB</li>
+            <li><span class="blue">5)</span> DOWNLOAD_RESUME</li>
+        </ul>
+    </div>
+
+    <div id="projects-area" class="hidden">
+        <p class="blue">== [CLASSIFIED_PROJECT_FILES] ==</p>
+        
+        <div class="project-entry">
+            <p><span class="green">[FILE_01]</span> <span class="white">MACHINE-LEARNING-PACKET-ANALYZER</span></p>
+            <img src="confusionmatrix.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed an end-to-end ML pipeline to preprocess 42 network features for intrusion detection. Optimized an XGBoost model via stratified shuffle splitting and hyperparameter tuning, achieving a 9% reduction in false positives across a dataset of 250k+ logs.
+            </p>
+        </div>
+
+        <div class="project-entry">
+            <p><span class="green">[FILE_02]</span> <span class="white">SOC SIMULATION LAB</span></p>
+            <img src="SIEM.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed a centralized log ingestion pipeline within a heterogeneous multi-VM lab. Configured custom rules and decoders to analyze traffic logs and command-line activity, mapping 15+ security use cases. Implemented an automated ELK stack (Elasticsearch, Logstash, Kibana) framework that increased threat visibility and cut response times by 40%.
+            </p>
+        </div>
+
+        <div class="project-entry">
+            <p><span class="green">[FILE_03]</span> <span class="white">FULL-STACK MFA PASSWORD MANAGER</span></p>
+            <img src="fullStack.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed a full-stack password management application with a focus on cryptographic best practices. Implemented a robust security layer including bcrypt password hashing and multi-factor authentication. Mitigated automated threats by 80% using server-side rate limiting and account lockouts, while delivering a seamless user experience via a custom Bootstrap-driven UI.
+            </p>
+        </div>
+
+        <div class="project-entry">
+            <p><span class="green">[FILE_04]</span> <span class="white">PYTHON-NETWORK-PORT-SCANNER</span></p>
+            <img src="nmapScanner.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Engineered a web-integrated port scanner leveraging python-nmap for automated network auditing. Optimized service detection scripts to achieve a 40% gain in scanning efficiency. Implemented a Flask-driven frontend for real-time result visualization and PDF/CSV report exports, streamlining the vulnerability assessment workflow by 70%.
+            </p>
+        </div>
+
+        <div class="project-entry">
+            <p><span class="green">[FILE_05]</span> <span class="white">WINDOWS-SERVER-ACTIVE-DIRECTORY-LAB</span></p>
+            <img src="creategroupsscript.jpg" alt="Android App" class="project-img">
+            <img src="createPCscript.jpg" alt="Android App" class="project-img">
+            <p class="dim-text">
+                Architected a hardened Windows Server Core environment to deploy a secure Active Directory infrastructure. I engineered a scalable OU hierarchy centered on the Principle of Least Privilege (PoLP) and utilized Group Policy Objects (GPOs) to automate security baselines and identity management across the domain.
+            </p>
+        </div>
+        <p class="blink-text">Type 'back' to return to menu.</p>
+    </div>
+
+    <div id="contact-area" class="hidden">
+        <p class="blue">== [SECURE_COMMUNICATION_CHANNELS] ==</p>
+        <div class="contact-grid">
+            <p><span class="system-label">PROFESSIONAL:</span> <a href="mailto:moiseszuniga01@gmail.com">moiseszuniga01@gmail.com</a></p>
+            <p><span class="system-label">EDUCATIONAL:</span> <a href="mailto:mz397@njit.edu">mz397@njit.edu</a></p>
+        </div>
+        <p class="dim-text">Type 'back' to return to menu.</p>
+    </div>
+
+    <div class="input-line">
+        <span class="prompt">guest@portfolio:~$</span>
+        <input type="text" id="terminal-input" autofocus autocomplete="off">
+    </div>
+  </div>
+
+  <script src="home.js"></script>
+</body>
+</html>
