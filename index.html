@@ -1,126 +1,118 @@
-const input = document.getElementById('terminal-input');
-const terminalContent = document.getElementById('terminal-content');
-const actionArea = document.getElementById('action-area');
-const contactArea = document.getElementById('contact-area');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Moises Zuniga | Cybersecurity Portfolio</title>
+    <link rel="icon" href="favicon.webp" type="image/x-icon">
+</head>
+<body>
+    <div id="boot-loader">
+        <div class="matrix-bg" id="matrix-canvas"></div>
+        <div class="boot-content">
+            <pre class="green">
+    ______
+    /  MZ  \
+    | [SHLD] |
+     \______/ 
+            </pre>
+            <div id="boot-logs"></div>
+            <div class="side-stats-boot">
+                <p class="blue">-- NEURAL_LINK_BOOT --</p>
+                <p>OS: NJIT_CYBER_v2.6</p>
+                <p>AI_CORE: ACTIVE</p>
+                <p>ENCRYPTION: AES-256</p>
+            </div>
+        </div>
+    </div>
+  
+  <div class="terminal-container">
+    <span id="home-Btn" class="gui-button hidden" onclick="goHome()">[ ESC / HOME ]</span>
+    <div id="terminal-content">
+        <div class="line"><span class="blue">[SYSTEM]</span> Verifying Integrity... </div>
+        <div class="line">University: <span class="green">New Jersey Institute of Technology</span></div>
+        <div class="line">Minor: <span class="green">Artificial Intelligence</span></div>
+        <br>
+        <div class="hero-text">WELCOME_GUEST_USER</div>
+        <p class="dim-text">Authorized Session: Zuniga, Moises [SPRING_2026]</p>
+        <p class="dim-text">>--- PRESS [ENTER] ---<</p>
+    </div>
 
-let accessGranted = false;
-const bootLogs = [
-    "[OK] Initializing kernel...",
-    "[OK] Loading NJIT_AI_MODULE...",
-    "[OK] Establishing Secure Tunnel...",
-    "[WARN] Unauthorized access attempt blocked...",
-    "[OK] Decrypting user_profile: MZ_CYBER...",
-    "[SUCCESS] Access Granted."
-];
+    <div id="action-area" class="hidden">
+        <p class="menu-title">SELECT_PROTOCOL_</p>
+        <p class="dim-text">[Enter number choice on command line then press (ENTER) or click option]</p>
+        <ul class="terminal-menu">
+            <li onclick="handleMenu('1')"><span class="blue">1)</span> <span class="clickable">VIEW_PROJECTS</span></li>
+            <li onclick="handleMenu('2')"><span class="blue">2)</span> <span class="clickable">CONTACT_INFO</span></li>
+            <li onclick="handleMenu('3')"><span class="blue">3)</span> <span class="clickable">LINKEDIN</span></li>
+            <li onclick="handleMenu('4')"><span class="blue">4)</span> <span class="clickable">GITHUB</span></li>
+            <li onclick="handleMenu('5')"><span class="blue">5)</span> <span class="clickable">VIEW_RESUME</span></li>
+        </ul>
+    </div>
 
-function startBootSequence() {
-    const logContainer = document.getElementById('boot-logs');
-    let i = 0;
+    <div id="projects-area" class="hidden">
+        <p class="blue">== [CLASSIFIED_PROJECT_FILES] ==</p>
+        
+        <div class="project-entry">
+            <p><span class="green">[FILE_01]</span> <span class="white">MACHINE-LEARNING-PACKET-ANALYZER</span></p>
+            <img src="confusionmatrix.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed an end-to-end ML pipeline to preprocess 42 network features for intrusion detection. Optimized an XGBoost model via stratified shuffle splitting and hyperparameter tuning, achieving a 9% reduction in false positives across a dataset of 250k+ logs.
+            </p>
+        </div>
 
-    // 1. Display Logs one by one
-    const interval = setInterval(() => {
-        if (i < bootLogs.length) {
-            const line = document.createElement('div');
-            line.textContent = bootLogs[i];
-            logContainer.appendChild(line);
-            i++;
-        } else {
-            clearInterval(interval);
-            // 2. Hide loader after 1 second delay
-            setTimeout(() => {
-                document.getElementById('boot-loader').style.display = 'none';
-            }, 1000);
-        }
-    }, 300); // Speed of the boot logs
-}
+        <div class="project-entry">
+            <p><span class="green">[FILE_02]</span> <span class="white">SOC SIMULATION LAB</span></p>
+            <img src="SIEM.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed a centralized log ingestion pipeline within a heterogeneous multi-VM lab. Configured custom rules and decoders to analyze traffic logs and command-line activity, mapping 15+ security use cases. Implemented an automated ELK stack (Elasticsearch, Logstash, Kibana) framework that increased threat visibility and cut response times by 40%.
+            </p>
+        </div>
 
-// Start on page load
-window.onload = startBootSequence;
-document.addEventListener('click', () => {
-    input.focus();
-});
+        <div class="project-entry">
+            <p><span class="green">[FILE_03]</span> <span class="white">FULL-STACK MFA PASSWORD MANAGER</span></p>
+            <img src="fullStack.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Developed a full-stack password management application with a focus on cryptographic best practices. Implemented a robust security layer including bcrypt password hashing and multi-factor authentication. Mitigated automated threats by 80% using server-side rate limiting and account lockouts, while delivering a seamless user experience via a custom Bootstrap-driven UI.
+            </p>
+        </div>
 
-function goHome() {
-    hideAll();
-    document.getElementById('action-area').classList.remove('hidden');
-    document.getElementById('home-Btn').classList.add('hidden');
-}
+        <div class="project-entry">
+            <p><span class="green">[FILE_04]</span> <span class="white">PYTHON-NETWORK-PORT-SCANNER</span></p>
+            <img src="nmapScanner.jpg" alt="Banking App" class="project-img">
+            <p class="dim-text">
+                Engineered a web-integrated port scanner leveraging python-nmap for automated network auditing. Optimized service detection scripts to achieve a 40% gain in scanning efficiency. Implemented a Flask-driven frontend for real-time result visualization and PDF/CSV report exports, streamlining the vulnerability assessment workflow by 70%.
+            </p>
+        </div>
 
-input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        const val = input.value.trim().toLowerCase();
-        input.value = ''; // Clear input field after pressing enter
-        if (!accessGranted) {
-            // Step 1: Reveal the Menu
-            accessGranted = true;
-            terminalContent.classList.add('hidden'); // Hide the welcome text
-            actionArea.classList.remove('hidden');   // Show the menu
-        } else {
-            // Step 2: Handle Menu Choices
-            handleMenu(val);
-        }
-    }
-});
-document.addEventListener('keydown', function(event) {
-    if(event.key === "Escape") {
-        const mainMenu = document.getElementById('action-area');
+        <div class="project-entry">
+            <p><span class="green">[FILE_05]</span> <span class="white">WINDOWS-SERVER-ACTIVE-DIRECTORY-LAB</span></p>
+            <img src="creategroupsscript.jpg" alt="Android App" class="project-img">
+            <img src="createPCscript.jpg" alt="Android App" class="project-img">
+            <p class="dim-text">
+                Architected a hardened Windows Server Core environment to deploy a secure Active Directory infrastructure. I engineered a scalable OU hierarchy centered on the Principle of Least Privilege (PoLP) and utilized Group Policy Objects (GPOs) to automate security baselines and identity management across the domain.
+            </p>
+        </div>
+        <p class="blink-text">Type 'back' to return to menu.</p>
+    </div>
 
-        if (mainMenu.classList.contains('hidden')){
-            goHome();
-        }
-    }
-});
+    <div id="contact-area" class="hidden">
+        <p class="blue">== [SECURE_COMMUNICATION_CHANNELS] ==</p>
+        <div class="contact-grid">
+            <p><span class="system-label">PROFESSIONAL:</span> <a href="mailto:moiseszuniga01@gmail.com">moiseszuniga01@gmail.com</a></p>
+            <p><span class="system-label">EDUCATIONAL:</span> <a href="mailto:mz397@njit.edu">mz397@njit.edu</a></p>
+        </div>
+        <p class="dim-text">Type 'back' to return to menu.</p>
+    </div>
 
-function hideAll() {
-    const sections = ['action-area', 'contact-area', 'projects-area', 'terminal-content'];
-    sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('hidden');
-    });
-    document.getElementById('home-Btn').classList.add('hidden');
-}
+    <div class="input-line">
+        <span class="prompt">guest@portfolio:~$</span>
+        <input type="text" id="terminal-input" placeholder="Type here..." autofocus autocomplete="off">
 
-function handleMenu(choice) {
-    const cmd = choice.toString().toLowerCase().trim();
+    </div>
+  </div>
 
-    if (cmd === '1' || cmd === 'projects') {
-        hideAll();
-        document.getElementById('projects-area').classList.remove('hidden');
-        document.getElementById('home-Btn').classList.remove('hidden');
-    } else if (cmd === '2' || cmd === 'contact') {
-        hideAll();
-        document.getElementById('contact-area').classList.remove('hidden');
-        document.getElementById('home-Btn').classList.remove('hidden');
-    } else if (cmd === '3') {
-        window.open('https://www.linkedin.com/in/moises-zuniga2034894/', '_blank');
-    } else if (cmd === '4') {
-        window.open('https://github.com/Moises-ITS', '_blank');
-    } else if (cmd === '5' || cmd === 'resume') {
-        openResume();
-    } else if (cmd === 'back' || cmd === 'home' || cmd === "return") {
-        goHome();
-    }
-}
-
-function openResume() {
-    // This is the cleanest way to open a PDF in a new tab
-    const resumeUrl = 'resume.pdf'; 
-    window.open(resumeUrl, '_blank');
-    
-    // Optional: Print a status message to your terminal
-    printToTerminal("Opening 'resume.pdf' in secure external buffer...");
-}
-
-input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        handleMenu(input.value);
-        input.value = '';
-    }
-});
-
-// Helper to print text to the screen if you want feedback
-function printToTerminal(text) {
-    const line = document.createElement('p');
-    line.innerHTML = `<span class="blue">[SYSTEM]:</span> ${text}`;
-    actionArea.appendChild(line);
-}
+  <script src="index.js"></script>
+</body>
+</html>
