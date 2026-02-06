@@ -12,10 +12,10 @@
         <div class="matrix-bg" id="matrix-canvas"></div>
         <div class="boot-content">
             <pre class="green">
-    ______
-    /  MZ  \
-    | [SHLD] |
-     \______/ 
+   ______
+   /      \
+   | [SHLD] |
+    \______/ 
             </pre>
             <div id="boot-logs"></div>
             <div class="side-stats-boot">
@@ -27,28 +27,24 @@
         </div>
     </div>
   
-  <div class="terminal-container">
-    <span id="home-Btn" class="gui-button hidden" onclick="goHome()">[ ESC / HOME ]</span>
-    <div id="terminal-content">
-        <div class="line"><span class="blue">[SYSTEM]</span> Verifying Integrity... </div>
-        <div class="line">University: <span class="green">New Jersey Institute of Technology</span></div>
-        <div class="line">Minor: <span class="green">Artificial Intelligence</span></div>
-        <br>
-        <div class="hero-text">WELCOME_GUEST_USER</div>
-        <p class="dim-text">Authorized Session: Zuniga, Moises [SPRING_2026]</p>
-        <p class="dim-text">>--- PRESS [ENTER] ---<</p>
-    </div>
-
-    <div id="action-area" class="hidden">
-        <p class="menu-title">SELECT_PROTOCOL_</p>
-        <p class="dim-text">[Enter number choice on command line then press (ENTER) or click option]</p>
-        <ul class="terminal-menu">
-            <li onclick="handleMenu('1')"><span class="blue">1)</span> <span class="clickable">VIEW_PROJECTS</span></li>
-            <li onclick="handleMenu('2')"><span class="blue">2)</span> <span class="clickable">CONTACT_INFO</span></li>
-            <li onclick="handleMenu('3')"><span class="blue">3)</span> <span class="clickable">LINKEDIN</span></li>
-            <li onclick="handleMenu('4')"><span class="blue">4)</span> <span class="clickable">GITHUB</span></li>
-            <li onclick="handleMenu('5')"><span class="blue">5)</span> <span class="clickable">VIEW_RESUME</span></li>
-        </ul>
+    <div class="terminal-container">
+        <span id="home-Btn" class="gui-button hidden" onclick="goHome()">[ ESC / HOME ]</span>
+        <div id="terminal-content">
+            <div id="main-menu-view">
+                <div id="menu-Logs"></div>
+                <div id="action-area" class="hidden">
+                    <p class="menu-title blue">SELECT_PROTOCOL_</p>
+                    <p class="dim-text">[Enter number choice on command line then press (ENTER) or click option]</p>
+                    <ul class="terminal-menu">
+                        <li onclick="handleMenu('1')"><span class="blue">1)</span> <span class="clickable">VIEW_PROJECTS</span></li>
+                        <li onclick="handleMenu('2')"><span class="blue">2)</span> <span class="clickable">CONTACT_INFO</span></li>
+                        <li onclick="handleMenu('3')"><span class="blue">3)</span> <span class="clickable">LINKEDIN</span></li>
+                        <li onclick="handleMenu('4')"><span class="blue">4)</span> <span class="clickable">GITHUB</span></li>
+                        <li onclick="handleMenu('5')"><span class="blue">5)</span> <span class="clickable">VIEW_RESUME</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="projects-area" class="hidden">
@@ -105,13 +101,11 @@
         </div>
         <p class="dim-text">Type 'back' to return to menu.</p>
     </div>
-
-    <div class="input-line">
+  </div>
+  <div class="input-line">
         <span class="prompt">guest@portfolio:~$</span>
         <input type="text" id="terminal-input" placeholder="Type here..." autofocus autocomplete="off">
-
-    </div>
-  </div>
+</div>
 
   <script src="index.js"></script>
 </body>
