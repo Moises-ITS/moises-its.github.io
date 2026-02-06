@@ -39,10 +39,12 @@ body {
 
 /* TERMINAL LAYOUT */
 .terminal-container {
+    position: relative; /* Ensure it stays in the flow */
+    display: block;    /* Explicitly set this */
     padding: 40px;
-    min-height: calc(100vh - 30px);
+    background-color: var(--bg-color);
 }
-
+.system-blue { color: #00ccff; font-family: 'Courier', monospace; font-size: 0.9rem; }
 .line { margin-bottom: 10px; }
 .green { color: var(--text-green); }
 .blue { color: var(--text-blue); }
@@ -124,10 +126,11 @@ body {
 }
 
 .dim-text {
-    color: #888;
-    font-size: 0.95rem;
+    color: #969595;
+    font-size: 0.85rem;
     margin-top: 5px;
     line-height: 1.6;
+    letter-spacing: 2px;
 }
 
 .blink-text {
