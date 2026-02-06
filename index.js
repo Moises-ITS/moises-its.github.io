@@ -78,6 +78,40 @@ function goHome() {
     input.focus()
     window.scrollTo(0, 0);
 }
+
+document.addEventListener('click', function() {
+    const bootLoader = document.getElementById('boot-loader');
+    if (bootLoader.style.display === 'none' && !menuVisable) {
+        revealMenu();
+    }
+})
+
+function revealMenu() {
+    if(!menuVisable){
+        actionArea.classList.remove('hidden');
+        menuVisable = true;
+        const instruction = document.querySelector(".instruction-line");
+        if (instruction){
+            instruction.style.display = "none";
+        }
+        input.focus();
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        })
+    }
+}
+input.addEventListener('keydown', function(e) {
+    if (e.key === "Enter") {
+        const val = input.value.trim().toLowerCase();
+        if(!menuVisable) {
+            revealMenu();
+        } else {
+            handleMenu(val);
+        }
+        input.value = '';
+    }
+});
 //LISTENS FOR ENTER KEY AND IF HEARS IT CONTINUES HANDLEMENU FUNCTION
 input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
