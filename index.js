@@ -21,7 +21,8 @@ const bootLogs = [
 const menuLogs = [
     "<div class=\"line\"><span class=\"blue\">[SYSTEM]</span> Verifying Integrity... </div>",
     "<div class=\"line\">University: <span class=\"green\">New Jersey Institute of Technology</span></div>",
-    "<div class=\"line\">Minor: <span class=\"green\">Artificial Intelligence</span></div><br>",
+    "<div class=\"line\">Minor: <span class=\"green\">Artificial Intelligence</span></div>",
+    "<div class=\"line\">Concentration: <span class=\"green\">Cybersecurity</span></div><br>",
     "<div class=\"hero-text\">WELCOME_GUEST_USER</div>",
     "<p class=\"dim-text\">Authorized Session: Zuniga, Moises [SPRING_2026]</p>",
     "<p class=\"dim-text instruction-line\">>--- PRESS [ENTER] TO START ---<</p>",
@@ -54,7 +55,7 @@ async function bootSystem() {
         menuContainer.appendChild(lina);
 
         window.scrollTo(0, document.body.scrollHeight);
-        await new Promise(r => setTimeout(r, 600));
+        await new Promise(r => setTimeout(r, 400));
     }
 }
 
@@ -100,6 +101,14 @@ function revealMenu() {
             behavior: 'smooth'
         })
     }
+}
+function downloadResume() {
+    const link = document.createElement('a');
+    link.href = 'Zuniga, Moises NJIT Spring 2026 Resume.pdf';
+    link.download = 'Zuniga, Moises NJIT Spring 2026 Resume.pdf'
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 input.addEventListener('keydown', function(e) {
     if (e.key === "Enter") {
@@ -170,6 +179,8 @@ function handleMenu(choice) {
         window.open('https://github.com/Moises-ITS', '_blank');
     } else if (cmd === '5' || cmd === 'resume') {
         openResume();
+    } else if (cmd === '6' || cmd === 'download resume') {
+        downloadResume();
     } else if (cmd === 'back' || cmd === 'home' || cmd === "return") {
         goHome();
     }
