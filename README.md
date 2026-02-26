@@ -1,4 +1,4 @@
-Moises Zuniga Portfolio 🌐
+Moises Zuniga Portfolio 
 
 Welcome to my personal portfolio! I’m Moises Zuniga, a college student studying Computer Science with a minor in Artificial Intelligence, 
 I'm passionate about cybersecurity and software development. This website showcases my projects, skills, and experiences as I prepare for a career in cybersecurity.
