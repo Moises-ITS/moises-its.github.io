@@ -15,7 +15,7 @@ const card = (reduced: boolean) => ({
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : 0 },
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : 0 },
   },
 })
 
@@ -29,7 +29,7 @@ function ProjectCard({ project, reduced }: { project: Project; reduced: boolean 
       className={`pcard pcard--${project.accent}`}
       variants={card(reduced)}
       whileHover={{ y: -4 }}
-      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
       aria-labelledby={`proj-${project.id}`}
       style={{ '--accent': accentVar } as React.CSSProperties}
     >

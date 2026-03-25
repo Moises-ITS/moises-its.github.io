@@ -10,7 +10,7 @@ import { Contact } from './components/Contact'
 
 export default function App() {
   return (
-    <MotionConfig reducedMotion={process.env.NODE_ENV === "production" ? "user" : "never"}>
+    <MotionConfig reducedMotion={import.meta.env.PROD ? "user" : "never"}>
       {/* Fixed ambient background */}
       <div className="ambient" aria-hidden="true">
         <div className="ambient__orb ambient__orb--a" />

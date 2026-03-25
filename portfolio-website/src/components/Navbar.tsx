@@ -23,14 +23,14 @@ export function Navbar() {
 
   const navVariants = {
     hidden: { opacity: 0, y: -16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
   }
 
   const mobileMenu = {
     hidden: { opacity: 0, height: 0 },
-    visible: { opacity: 1, height: 'auto', transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
-    exit:   { opacity: 0, height: 0,    transition: { duration: 0.2, ease: [0.55, 0, 0.8, 0.45] } },
-  }
+    visible: { opacity: 1, height: 'auto', transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const } },
+    exit:   { opacity: 0, height: 0,    transition: { duration: 0.2, ease: [0.55, 0, 0.8, 0.45] as const } },
+  } as const
 
   return (
     <motion.header

@@ -175,7 +175,7 @@ export const experience: TimelineEntry[] = [
     title: 'Undergraduate Researcher',
     org: 'NJIT AI Privacy',
     detail:
-      'Evaluated the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
+      'Evaluate the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
   },
 ]
 

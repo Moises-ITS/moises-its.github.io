@@ -14,7 +14,7 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 }
 
@@ -75,7 +75,7 @@ export function Hero() {
         style={{ y: parallaxY }}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.15 }}
       >
         <div className="hero__photo-frame">
           <img src="/profile.jpeg" alt={`${personal.name} portrait`} />

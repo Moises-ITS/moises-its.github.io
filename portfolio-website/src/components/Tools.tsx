@@ -19,12 +19,12 @@ const container = {
 
 const panel = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const } },
 }
 
 const pill = {
   hidden: { opacity: 0, scale: 0.88 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 }
 
 /* ─── Tools Section ──────────────────────────────────────────────────────────── */
@@ -64,7 +64,7 @@ export function Tools() {
               variants={reduced ? undefined : panel}
               style={{ '--tool-accent': cfg.color, '--tool-glow': cfg.glow } as React.CSSProperties}
               whileHover={{ y: -4 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
             >
               {/* Glow blob */}
               <div className="tool-panel__blob" aria-hidden="true" />
@@ -104,7 +104,7 @@ export function Tools() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : 0.1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : 0.1 }}
       >
         <span className="tl-certs__label">Certifications</span>
         <div className="tl-certs__row">

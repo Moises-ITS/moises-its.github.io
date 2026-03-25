@@ -22,7 +22,7 @@ function ResearchCard({ item, index, reduced }: { item: ResearchItem; index: num
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : index * 0.09 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : index * 0.09 }}
       aria-labelledby={`research-title-${item.id}`}
     >
       <div className="research-card__top">

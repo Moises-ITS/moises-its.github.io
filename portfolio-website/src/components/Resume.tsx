@@ -10,7 +10,7 @@ function useReveal(delay = 0, reduced = false) {
     initial: { opacity: 0, y: 24 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.1 } as const,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : delay },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : delay },
   }
 }
 
@@ -26,7 +26,7 @@ function Timeline({ entries, reduced }: { entries: TimelineEntry[]; reduced: boo
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : i * 0.1 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : i * 0.1 }}
         >
           <div className="vtl__rail">
             <div className="vtl__dot" />
