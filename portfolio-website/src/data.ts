@@ -12,15 +12,14 @@ export const personal: PersonalInfo = {
   linkedin: 'https://www.linkedin.com/in/moises-zuniga2034894/',
   linkedinHandle: 'linkedin.com/in/moises-zuniga2034894',
   status: 'Open to internships',
-  institution: 'NJIT · CS + AI Minor · Class of \'28',
+  institution: 'NJIT · CS + AI · Cybersecurity · Class of \'28',
   bio: 'I build systems at the intersection of cybersecurity, machine learning, and software engineering. I care about work that is technically honest, clearly presented, and actually useful.',
   tape: [
     'cybersecurity',
     'machine learning',
     'software engineering',
     'DevSecOps',
-    'security tooling',
-    'technical problem-solving',
+    'CI/CD',
     'blue team',
     'detection engineering',
   ],
@@ -70,19 +69,19 @@ export const projects: Project[] = [
   {
     id: 'password-manager',
     number: '03',
-    title: 'Secure Password Manager',
+    title: 'Cloud DevSecOps Platform',
     category: 'Software Security',
     year: '2025',
     summary:
-      'A full-stack credential management app focused on layered authentication, account hardening, and secure user flows.',
+      'Built an automated DevSecOps pipeline with real-time cloud monitoring to prevent vulnerabilities, enforce secure infrastructure, and eliminate credential leaks before deployment.',
     challenge:
       'Balancing usability with stronger controls against brute force, weak auth, and account takeover.',
     contribution:
       'Built backend auth logic, designed the multi-step flow, and enforced bcrypt, lockouts, and token verification.',
     impact:
-      'Combined password auth, email verification, and TOTP into a meaningful three-layer MFA experience.',
-    stack: ['Python', 'Flask', 'BCrypt', 'SQLite', 'Bootstrap', 'TOTP'],
-    repo: 'https://github.com/Moises-ITS/Secure-Password-Manager',
+      'Reduced security risk exposure and remediation effort significantly by stopping critical issues early and enforcing continuous cloud compliance at scale.',
+    stack: ['Python', 'Terraform', 'Github Actions', 'Docker'],
+    repo: 'https://github.com/Moises-ITS/CloudSecurity',
     accent: 'cyan',
     buildNote:
       'Security defaults matter more than security options. I designed every flow assuming the user would take the path of least resistance.',
@@ -113,41 +112,40 @@ export const research: ResearchItem[] = [
   {
     id: 'detection-engineering',
     number: '01',
-    title: 'Detection engineering for noisy endpoint telemetry',
-    status: 'Active',
+    title: 'Large Language Model - Cyber Defence',
+    status: 'In Progress',
     summary:
-      'Studying how normalization, rule quality, and dashboard design affect signal quality in student-scale SOC environments.',
-    tags: ['Wazuh', 'SIEM', 'Blue Team', 'Threat Hunting'],
+      'Building a 500M parameter large language model from scratch, specialized on cybersecurity intelligence',
+    tags: ['Machine Learning', 'Artifical Intelligence', 'Cyber Defence', 'PyTorch'],
   },
   {
     id: 'ml-anomaly',
     number: '02',
-    title: 'ML-assisted packet and anomaly analysis',
-    status: 'Building',
+    title: 'JitHub - Large-Scale Campus Opportunity Aggregator',
+    status: 'In Progress',
     summary:
-      'Exploring how feature design and disciplined evaluation make anomaly models more trustworthy in practice.',
-    tags: ['XGBoost', 'Python', 'Anomaly Detection', 'Network Security'],
+      'Aggregation platform of NJIT campus data utilizing current opportunities and machine learning for predictions; student opportunities.',
+    tags: ['Python', 'Typescript', 'React', 'Machine Learning'],
   },
   {
-    id: 'secure-arch',
+    id: 'AWS - Security Engineering',
     number: '03',
-    title: 'Secure application architecture and auth hardening',
-    status: 'Exploring',
+    title: 'AWS - Security Engineering',
+    status: 'In Progress',
     summary:
-      'Focusing on MFA flows, secret handling, rate limiting, and secure defaults in full-stack systems.',
-    tags: ['Flask', 'Auth', 'DevSecOps', 'Web Security'],
+      'Secure application hardening and monitoring of production AWS environments including IAM, S3, EC2, CloudTrail & Lambda',
+    tags: ['Securing Engineering', 'AWS', 'Python', 'IAM'],
   },
   {
     id: 'cloud-infra',
     number: '04',
-    title: 'Cloud and infrastructure security foundations',
+    title: 'Security-First DevSecOps IDE Extension',
     status: 'In Progress',
     summary:
-      'Expanding into CI/CD, Linux infrastructure, and defensive engineering patterns that connect shipping code with protecting it.',
-    tags: ['CI/CD', 'Linux', 'Infrastructure', 'Cloud Security'],
+      'A security-first developer assistant that integrates into VS Code to perform context-aware vulnerability detection, secrets scanning, simulated PR analysis, continuous monitoring, and AI-powered remediation guidance for real-world codebases.',
+      tags: ['DevSecOps', 'Software Development', 'LLM', 'SAST']
   },
 ]
-
 export const education: TimelineEntry[] = [
   {
     range: 'Sep 2024 – May 2028',
@@ -170,21 +168,21 @@ export const experience: TimelineEntry[] = [
     title: 'IT Assistant',
     org: 'NJIT Civil Engineering',
     detail:
-      'Supported 50+ users, resolved 25+ weekly tickets, improved workstation setup flows, and managed campus IT assets.',
+      'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets to ensure smooth day-to-day operations.',
   },
   {
-    range: 'Ongoing',
-    title: 'Independent Security Builder',
-    org: 'Projects, labs, and competitive practice',
+    range: 'Mar 2026 - Ongoing',
+    title: 'Undergraduate Researcher',
+    org: 'NJIT AI Privacy',
     detail:
-      'Building hands-on systems across SIEM engineering, network analysis, secure software, and technical problem-solving.',
+      'Evaluated the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
   },
 ]
 
 export const skillGroups: SkillGroup[] = [
   {
     label: 'Security',
-    items: ['Wazuh', 'Kibana', 'Wireshark', 'Nmap', 'OWASP', 'Network Security', 'Threat Detection'],
+    items: ['AWS', 'Wazuh', 'Kibana', 'OWASP', 'Network Security', 'Threat Detection'],
   },
   {
     label: 'Languages',
@@ -192,7 +190,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: 'Engineering',
-    items: ['React', 'Flask', 'SQLite', 'Git / GitHub', 'REST APIs', 'Linux', 'Windows Server'],
+    items: ['React', 'Flask', 'PostgreSQL', 'Git / GitHub', 'REST APIs', 'Linux', 'Windows Server', 'Clerk'],
   },
   {
     label: 'AI & Data',
@@ -204,4 +202,5 @@ export const certifications = [
   { label: 'CompTIA Network+', status: 'Earned' },
   { label: 'NJIT Cybersecurity Certificate', status: 'Earned' },
   { label: 'CompTIA Security+', status: 'In Progress' },
+  { label: 'IBM Cybersecurity Fluency', status: 'In Progress' }
 ]

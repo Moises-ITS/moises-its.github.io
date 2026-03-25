@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download } from 'lucide-react'
+import { Eye, Mail } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from './icons'
 
 const NAV_LINKS = [
-  { label: 'Projects', href: '#projects' },
-  { label: 'Research', href: '#research' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Timeline',   href: '#background' },
+  { label: 'Skills',     href: '#tools' },
+  { label: 'Developing', href: '#research' },
+  { label: 'Projects',   href: '#projects' },
+  { label: 'Contact',    href: '#contact' },
 ]
 
 export function Navbar() {
@@ -52,15 +54,29 @@ export function Navbar() {
             ))}
           </ul>
 
-          <a
-            className="nav__cta"
-            href="Zuniga, Moises Fall 2025 - Spring 2025 Resume .pdf"
-            download
-            aria-label="Download resume PDF"
-          >
-            <Download size={14} />
-            Resume
-          </a>
+          <div className="nav__actions">
+            <div className="nav__socials" aria-label="Social links">
+              <a href="mailto:mz397@njit.edu" aria-label="Email Moises">
+                <Mail size={16} />
+              </a>
+              <a href="https://github.com/Moises-ITS" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+                <GithubIcon size={16} />
+              </a>
+              <a href="https://www.linkedin.com/in/moises-zuniga2034894/" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+                <LinkedinIcon size={16} />
+              </a>
+            </div>
+            <a
+              className="nav__cta"
+              href="Zuniga, Moises NJIT Spring 2026 Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View resume PDF in a new tab"
+            >
+              <Eye size={14} />
+              View Resume
+            </a>
+          </div>
 
           {/* Mobile toggle */}
           <button

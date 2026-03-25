@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Download } from 'lucide-react'
-import { education, experience, skillGroups, certifications } from '../data'
+import { education, experience, certifications } from '../data'
+import type { TimelineEntry } from '../types'
 
 /* ─── Reveal helper ──────────────────────────────────────────────────────────── */
 
@@ -8,9 +9,39 @@ function useReveal(delay = 0, reduced = false) {
   return {
     initial: { opacity: 0, y: 24 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.15 } as const,
+    viewport: { once: true, amount: 0.1 } as const,
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : delay },
   }
+}
+
+/* ─── Vertical Timeline ──────────────────────────────────────────────────────── */
+
+function Timeline({ entries, reduced }: { entries: TimelineEntry[]; reduced: boolean }) {
+  return (
+    <div className="vtl">
+      {entries.map((entry, i) => (
+        <motion.div
+          key={entry.title}
+          className="vtl__item"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: reduced ? 0 : i * 0.1 }}
+        >
+          <div className="vtl__rail">
+            <div className="vtl__dot" />
+            {i < entries.length - 1 && <div className="vtl__line" />}
+          </div>
+          <div className="vtl__body">
+            <span className="vtl__range">{entry.range}</span>
+            <p className="vtl__title">{entry.title}</p>
+            <p className="vtl__org">{entry.org}</p>
+            <p className="vtl__detail">{entry.detail}</p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  )
 }
 
 /* ─── Resume Section ─────────────────────────────────────────────────────────── */
@@ -26,15 +57,15 @@ export function Resume() {
             <span className="section-label">Resume</span>
           </div>
           <h2 className="section-head__h2" id="resume-heading">
-            Background & skills
+            Background & credentials
           </h2>
           <p className="section-head__sub">
-            A concise view of how coursework, labs, and hands-on projects connect.
+            How coursework, labs, and real-world projects connect end to end.
           </p>
         </div>
         <a
           className="resume__download"
-          href="Zuniga, Moises Fall 2025 - Spring 2025 Resume .pdf"
+          href="Zuniga, Moises NJIT Spring 2026 Resume.pdf"
           download
           aria-label="Download full resume PDF"
         >
@@ -43,69 +74,35 @@ export function Resume() {
         </a>
       </div>
 
-      <div className="resume-grid">
-        {/* Education */}
+      {/* Timeline row — full width, side by side */}
+      <div className="resume-timeline-row">
         <motion.section
           className="resume-card card"
           aria-labelledby="edu-heading"
           {...useReveal(0, reduced)}
         >
           <h3 className="resume-card__title" id="edu-heading">Education</h3>
-          {education.map((entry) => (
-            <div key={entry.title} className="timeline-entry">
-              <span className="timeline-entry__range">{entry.range}</span>
-              <p className="timeline-entry__title">{entry.title}</p>
-              <p className="timeline-entry__org">{entry.org}</p>
-              <p className="timeline-entry__detail">{entry.detail}</p>
-            </div>
-          ))}
+          <Timeline entries={education} reduced={reduced} />
         </motion.section>
 
-        {/* Experience */}
         <motion.section
           className="resume-card card"
           aria-labelledby="exp-heading"
           {...useReveal(0.08, reduced)}
         >
           <h3 className="resume-card__title" id="exp-heading">Experience</h3>
-          {experience.map((entry) => (
-            <div key={entry.title} className="timeline-entry">
-              <span className="timeline-entry__range">{entry.range}</span>
-              <p className="timeline-entry__title">{entry.title}</p>
-              <p className="timeline-entry__org">{entry.org}</p>
-              <p className="timeline-entry__detail">{entry.detail}</p>
-            </div>
-          ))}
+          <Timeline entries={experience} reduced={reduced} />
         </motion.section>
+      </div>
 
-        {/* Skills */}
-        <motion.section
-          className="resume-card card"
-          aria-labelledby="skills-heading"
-          {...useReveal(0.14, reduced)}
-        >
-          <h3 className="resume-card__title" id="skills-heading">Technical Skills</h3>
-          {skillGroups.map((group) => (
-            <div key={group.label} className="skill-section">
-              <span className="skill-section__label">{group.label}</span>
-              <div className="skill-section__items">
-                {group.items.map((item) => (
-                  <span key={item} className="stack-badge">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </motion.section>
-
-        {/* Certifications */}
-        <motion.section
-          className="resume-card card"
-          aria-labelledby="certs-heading"
-          {...useReveal(0.2, reduced)}
-        >
-          <h3 className="resume-card__title" id="certs-heading">Certifications</h3>
+      {/* Certifications row */}
+      <motion.section
+        className="resume-card card resume-certs-card"
+        aria-labelledby="certs-heading"
+        {...useReveal(0.14, reduced)}
+      >
+        <h3 className="resume-card__title" id="certs-heading">Certifications</h3>
+        <div className="certs-row">
           {certifications.map((cert) => (
             <div key={cert.label} className="cert-entry">
               <span
@@ -116,8 +113,8 @@ export function Resume() {
               <span className="cert-entry__status">{cert.status}</span>
             </div>
           ))}
-        </motion.section>
-      </div>
+        </div>
+      </motion.section>
     </section>
   )
 }

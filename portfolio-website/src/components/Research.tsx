@@ -77,15 +77,14 @@ export function Research() {
       <div className="research__head">
         <div>
           <div style={{ marginBottom: '1.1rem' }}>
-            <span className="section-label">Current Focus</span>
+            <span className="section-label">In Progress</span>
           </div>
           <h2 className="section-head__h2" id="research-heading">
-            What I'm actively exploring
+            Currently developing
           </h2>
         </div>
         <p className="research__sub">
-          Less resume summary, more active technical curiosity. These are the areas I am
-          testing, building against, and trying to understand more deeply.
+          Active builds, ongoing experiments, and areas I'm pushing deeper into right now.
         </p>
       </div>
 

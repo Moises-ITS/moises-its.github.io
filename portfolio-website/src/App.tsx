@@ -1,14 +1,16 @@
 import './index.css'
+import { MotionConfig } from 'framer-motion'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
-import { Projects } from './components/Projects'
+import { Background } from './components/Background'
 import { Research } from './components/Research'
-import { Resume } from './components/Resume'
+import { Tools } from './components/Tools'
+import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
 
 export default function App() {
   return (
-    <>
+    <MotionConfig reducedMotion={process.env.NODE_ENV === "production" ? "user" : "never"}>
       {/* Fixed ambient background */}
       <div className="ambient" aria-hidden="true">
         <div className="ambient__orb ambient__orb--a" />
@@ -22,22 +24,32 @@ export default function App() {
         <Navbar />
 
         <main>
+          {/* 1 — Intro */}
           <div className="container">
             <Hero />
           </div>
 
+          {/* 2 — Timelines */}
           <div className="container">
-            <Projects />
+            <Background />
           </div>
 
+          {/* 3 — Technical Skills + Certifications */}
+          <div className="container">
+            <Tools />
+          </div>
+
+          {/* 4 — Currently Developing */}
           <div className="container">
             <Research />
           </div>
 
+          {/* 5 — Finished Projects */}
           <div className="container">
-            <Resume />
+            <Projects />
           </div>
 
+          {/* 6 — Contact */}
           <div className="container">
             <Contact />
           </div>
@@ -50,6 +62,6 @@ export default function App() {
           </div>
         </footer>
       </div>
-    </>
+    </MotionConfig>
   )
 }

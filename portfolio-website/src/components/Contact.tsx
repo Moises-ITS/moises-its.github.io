@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, ArrowUpRight } from 'lucide-react'
+import { Mail, MapPin, ArrowUpRight } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from './icons'
 import { personal } from '../data'
 
 /* ─── Contact Section ────────────────────────────────────────────────────────── */
@@ -11,7 +12,7 @@ export function Contact() {
     initial: { opacity: 0, y: 32 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.15 } as const,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   }
 
   const links = [
@@ -22,13 +23,13 @@ export function Contact() {
       external: false,
     },
     {
-      icon: <Github size={18} aria-hidden="true" />,
+      icon: <GithubIcon size={18} aria-hidden="true" />,
       label: personal.githubHandle,
       href: personal.github,
       external: true,
     },
     {
-      icon: <Linkedin size={18} aria-hidden="true" />,
+      icon: <LinkedinIcon size={18} aria-hidden="true" />,
       label: personal.linkedinHandle,
       href: personal.linkedin,
       external: true,
@@ -48,9 +49,9 @@ export function Contact() {
             Open to the right opportunities
           </h2>
           <p className="contact-card__body">
-            If you're hiring, building, or just want to compare notes on cybersecurity,
+            If you're hiring, building, or just want to connect on cybersecurity,
             AI, or systems work — I'd be glad to connect. I'm looking for internships
-            where security and engineering craft both matter.
+            where the worlds of security and engineering meet.
           </p>
         </div>
 
