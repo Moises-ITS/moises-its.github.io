@@ -65,7 +65,7 @@ export function Resume() {
         </div>
         <a
           className="resume__download"
-          href="Zuniga, Moises NJIT Spring 2026 Resume.pdf"
+          href="/resume.pdf"
           download
           aria-label="Download full resume PDF"
         >

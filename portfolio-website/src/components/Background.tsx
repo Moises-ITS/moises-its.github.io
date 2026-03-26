@@ -135,7 +135,7 @@ export function Background() {
         </div>
         <a
           className="resume__download"
-          href="Zuniga, Moises NJIT Spring 2026 Resume.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noreferrer"
           aria-label="View full resume PDF"
