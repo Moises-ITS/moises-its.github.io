@@ -165,7 +165,7 @@ export const education: TimelineEntry[] = [
 export const experience: TimelineEntry[] = [
   {
     range: 'Sep 2024 – Dec 2024',
-    title: 'IT Assistant',
+    title: 'IT Consultant',
     org: 'NJIT Civil Engineering',
     detail:
       'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets to ensure smooth day-to-day operations.',
@@ -173,7 +173,7 @@ export const experience: TimelineEntry[] = [
   {
     range: 'Mar 2026 - Ongoing',
     title: 'Undergraduate Researcher',
-    org: 'NJIT AI Privacy',
+    org: 'NJIT Security & AI Privacy',
     detail:
       'Evaluate the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
   },
