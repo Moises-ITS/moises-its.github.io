@@ -15,13 +15,13 @@ export const personal: PersonalInfo = {
   institution: 'NJIT · CS + AI · Cybersecurity · Class of \'28',
   bio: 'I build systems at the intersection of cybersecurity, machine learning, and software engineering. I care about work that is technically honest, clearly presented, and actually useful.',
   tape: [
-    'cybersecurity',
-    'machine learning',
-    'software engineering',
+    'Cybersecurity',
+    'Machine Learning',
+    'Software Engineering',
     'DevSecOps',
     'CI/CD',
-    'blue team',
-    'detection engineering',
+    'Defensive Security',
+    'Detection Engineering',
   ],
 }
 
