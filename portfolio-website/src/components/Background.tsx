@@ -24,7 +24,7 @@ const milestones: Milestone[] = [
     title: 'IT Assistant',
     org: 'NJIT Civil Engineering',
     detail:
-      'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets.',
+      'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets to ensure smooth day-to-day operations.',
     type: 'work',
   },
   {
@@ -47,7 +47,7 @@ const milestones: Milestone[] = [
     title: 'Undergraduate Researcher',
     org: 'NJIT AI Privacy',
     detail:
-      'Evaluated the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling.',
+      'Evaluate the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
     type: 'work',
   },
 ]
