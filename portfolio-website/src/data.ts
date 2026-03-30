@@ -22,6 +22,7 @@ export const personal: PersonalInfo = {
     'CI/CD',
     'Defensive Security',
     'Detection Engineering',
+    'Penetration Testing'
   ],
 }
 
@@ -163,11 +164,11 @@ export const milestones: Milestone[] = [
     type: 'work',
   },
   {
-    date: 'Jan 2025',
-    title: 'Started Cybersecurity Bootcamp',
-    org: 'NJIT Professional Certificate',
+    date: 'Sep 2025',
+    title: 'CompTIA Network+ Certification',
+    org: 'CompTIA',
     detail:
-      '400+ hours covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
+      'Validated foundational networking skills, including network architecture, security fundamentals, troubleshooting, and configuring core network devices.',
     type: 'cert',
   },
   {

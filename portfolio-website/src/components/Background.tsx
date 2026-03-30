@@ -80,7 +80,7 @@ export function Background() {
             <span className="section-label">Timeline</span>
           </div>
           <h2 className="section-head__h2" id="bg-heading">
-            Education &amp; experience
+            Education &amp; Experience
           </h2>
           <p className="section-head__sub">
             Where I've studied, what I've built, and the credentials I've earned along the way.

@@ -84,10 +84,10 @@ export function Projects() {
             <span className="section-label">Selected Work</span>
           </div>
           <h2 className="section-head__h2" id="projects-heading">
-            Systems built with intent
+            Real World Systems
           </h2>
           <p className="section-head__sub">
-            Each project is a real tradeoff — not a tutorial clone. Click through to see the code.
+            Projects Built with Intent.
           </p>
         </div>
         <span className="projects__count">{String(projects.length).padStart(2, '0')} projects</span>
