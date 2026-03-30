@@ -172,6 +172,14 @@ export const milestones: Milestone[] = [
     type: 'cert',
   },
   {
+    date: 'Dec 2025',
+    title: 'Cybersecurity Bootcamp',
+    org: 'NJIT Professional Certificate',
+    detail:
+      'Earned the Cybersecurity Professional Certificate after completing a 400+ hour program covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
+    type: 'cert',
+  },
+  {
     date: 'Mar 2026',
     title: 'Undergraduate Researcher',
     org: 'Professor Nathan Malkin',
