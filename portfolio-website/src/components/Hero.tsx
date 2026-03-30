@@ -78,7 +78,7 @@ export function Hero() {
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as const, delay: 0.15 }}
       >
         <div className="hero__photo-frame">
-          <img src="/profile-new.jpg" alt={`${personal.name} portrait`} />
+          <img src="/0Z0A6044.jpg" alt={`${personal.name} portrait`} />
         </div>
       </motion.div>
 
