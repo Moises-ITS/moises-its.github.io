@@ -1,4 +1,4 @@
-import type { PersonalInfo, Project, ResearchItem, TimelineEntry, SkillGroup } from './types'
+import type { PersonalInfo, Project, ResearchItem, SkillGroup, Milestone } from './types'
 
 export const personal: PersonalInfo = {
   name: 'Moises Zuniga',
@@ -143,39 +143,40 @@ export const research: ResearchItem[] = [
     status: 'In Progress',
     summary:
       'A security-first developer assistant that integrates into VS Code to perform context-aware vulnerability detection, secrets scanning, simulated PR analysis, continuous monitoring, and AI-powered remediation guidance for real-world codebases.',
-      tags: ['DevSecOps', 'Software Development', 'LLM', 'SAST']
+    tags: ['DevSecOps', 'Software Development', 'LLM', 'SAST']
   },
 ]
-export const education: TimelineEntry[] = [
+export const milestones: Milestone[] = [
   {
-    range: 'Sep 2024 – May 2028',
-    title: 'B.S. Computer Science',
+    date: 'Sep 2024',
+    title: 'Started B.S. Computer Science',
     org: 'New Jersey Institute of Technology',
     detail: 'Minor in Artificial Intelligence · Newark, NJ · GPA 3.5',
+    type: 'education',
   },
   {
-    range: 'Jan 2025 – Dec 2025',
-    title: 'Cybersecurity Bootcamp',
-    org: 'NJIT Professional Certificate',
-    detail:
-      '400+ hours covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
-  },
-]
-
-export const experience: TimelineEntry[] = [
-  {
-    range: 'Sep 2024 – Dec 2024',
-    title: 'IT Consultant',
+    date: 'Sep 2024',
+    title: 'IT Support Specialist',
     org: 'NJIT Civil Engineering',
     detail:
       'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets to ensure smooth day-to-day operations.',
+    type: 'work',
   },
   {
-    range: 'Mar 2026 - Ongoing',
+    date: 'Jan 2025',
+    title: 'Started Cybersecurity Bootcamp',
+    org: 'NJIT Professional Certificate',
+    detail:
+      '400+ hours covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
+    type: 'cert',
+  },
+  {
+    date: 'Mar 2026',
     title: 'Undergraduate Researcher',
-    org: 'NJIT Security & AI Privacy',
+    org: 'Professor Nathan Malkin',
     detail:
       'Evaluate the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
+    type: 'work',
   },
 ]
 

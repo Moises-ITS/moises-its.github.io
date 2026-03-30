@@ -32,6 +32,14 @@ export interface TimelineEntry {
   detail: string
 }
 
+export interface Milestone {
+  date: string
+  title: string
+  org: string
+  detail: string
+  type: 'education' | 'work' | 'cert'
+}
+
 export interface SkillGroup {
   label: string
   items: string[]

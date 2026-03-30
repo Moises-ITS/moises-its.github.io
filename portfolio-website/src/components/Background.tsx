@@ -1,56 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Eye } from 'lucide-react'
+import { milestones } from '../data'
+import type { Milestone } from '../types'
 
 /* ─── Unified timeline data (chronological) ─────────────────────────────────── */
-
-interface Milestone {
-  date: string
-  title: string
-  org: string
-  detail: string
-  type: 'education' | 'work' | 'cert'
-}
-
-const milestones: Milestone[] = [
-  {
-    date: 'Sep 2024',
-    title: 'Started B.S. Computer Science',
-    org: 'New Jersey Institute of Technology',
-    detail: 'Minor in Artificial Intelligence · Newark, NJ · GPA 3.5',
-    type: 'education',
-  },
-  {
-    date: 'Sep 2024',
-    title: 'IT Assistant',
-    org: 'NJIT Civil Engineering',
-    detail:
-      'Provided IT support for a department of users by troubleshooting technical issues, streamlining workstation setup processes, and managing campus technology assets to ensure smooth day-to-day operations.',
-    type: 'work',
-  },
-  {
-    date: 'Jan 2025',
-    title: 'Started Cybersecurity Bootcamp',
-    org: 'NJIT Professional Certificate',
-    detail:
-      '400+ hours covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
-    type: 'cert',
-  },
-  {
-    date: 'Dec 2025',
-    title: 'Completed Cybersecurity Bootcamp',
-    org: 'NJIT Professional Certificate',
-    detail: 'Earned the NJIT Cybersecurity Professional Certificate after completing the full program.',
-    type: 'cert',
-  },
-  {
-    date: 'Mar 2026',
-    title: 'Undergraduate Researcher',
-    org: 'NJIT AI Privacy',
-    detail:
-      'Evaluate the real-world security and privacy risks of LLM-powered web agents by uncovering failures in automated decision-making and user consent handling, while developing structured testing methods and applying threat modeling to identify vulnerabilities in how user data is managed.',
-    type: 'work',
-  },
-]
 
 const typeColors: Record<Milestone['type'], string> = {
   education: 'var(--blue)',

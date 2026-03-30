@@ -1,7 +1,15 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Download } from 'lucide-react'
-import { education, experience, certifications } from '../data'
+import { milestones, certifications } from '../data'
 import type { TimelineEntry } from '../types'
+
+const education: TimelineEntry[] = milestones
+  .filter(m => m.type === 'education')
+  .map(m => ({ range: m.date, title: m.title, org: m.org, detail: m.detail }))
+
+const experience: TimelineEntry[] = milestones
+  .filter(m => m.type === 'work')
+  .map(m => ({ range: m.date, title: m.title, org: m.org, detail: m.detail }))
 
 /* ─── Reveal helper ──────────────────────────────────────────────────────────── */
 
