@@ -164,19 +164,19 @@ export const milestones: Milestone[] = [
     type: 'work',
   },
   {
+    date: 'Jan 2025',
+    title: 'Cybersecurity Bootcamp',
+    org: 'NJIT Professional Certificate',
+    detail:
+      'Earned the Cybersecurity Professional Certificate after completing a 400+ hour program covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
+    type: 'cert',
+  },
+  {
     date: 'Sep 2025',
     title: 'CompTIA Network+ Certification',
     org: 'CompTIA',
     detail:
       'Validated foundational networking skills, including network architecture, security fundamentals, troubleshooting, and configuring core network devices.',
-    type: 'cert',
-  },
-  {
-    date: 'Dec 2025',
-    title: 'Cybersecurity Bootcamp',
-    org: 'NJIT Professional Certificate',
-    detail:
-      'Earned the Cybersecurity Professional Certificate after completing a 400+ hour program covering Bash, PowerShell, DevOps, blue team operations, penetration testing, OWASP, networking, and cryptography.',
     type: 'cert',
   },
   {
