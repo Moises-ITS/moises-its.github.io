@@ -5,10 +5,10 @@ import type { ResearchItem } from '../types'
 /* ─── Status Color Map ───────────────────────────────────────────────────────── */
 
 const statusStyle: Record<ResearchItem['status'], { color: string; glow: string }> = {
-  Active:       { color: 'var(--cyan)',   glow: 'rgba(94,245,208,0.22)' },
-  Building:     { color: 'var(--blue)',   glow: 'rgba(91,173,255,0.22)' },
-  Exploring:    { color: 'var(--violet)', glow: 'rgba(157,123,255,0.2)' },
-  'In Progress':{ color: 'var(--gold)',   glow: 'rgba(240,192,96,0.2)' },
+  Active:       { color: 'var(--cyan)',   glow: 'rgba(52,211,153,0.22)' },
+  Building:     { color: 'var(--blue)',   glow: 'rgba(251,191,36,0.22)' },
+  Exploring:    { color: 'var(--violet)', glow: 'rgba(167,139,250,0.2)' },
+  'In Progress':{ color: 'var(--gold)',   glow: 'rgba(251,191,36,0.2)' },
 }
 
 /* ─── Research Card ──────────────────────────────────────────────────────────── */
@@ -80,11 +80,11 @@ export function Research() {
             <span className="section-label">In Progress</span>
           </div>
           <h2 className="section-head__h2" id="research-heading">
-            Currently developing
+            Active research &amp; builds
           </h2>
         </div>
         <p className="research__sub">
-          Active builds, ongoing experiments, and areas I'm pushing deeper into right now.
+          Ongoing AI research, experiments in progress, and the systems I'm actively developing right now.
         </p>
       </div>
 

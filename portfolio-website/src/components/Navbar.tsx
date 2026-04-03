@@ -4,11 +4,11 @@ import { Eye, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 
 const NAV_LINKS = [
-  { label: 'Timeline',   href: '#background' },
-  { label: 'Skills',     href: '#tools' },
+  { label: 'Timeline', href: '#background' },
+  { label: 'Skills', href: '#tools' },
   { label: 'Developing', href: '#research' },
-  { label: 'Projects',   href: '#projects' },
-  { label: 'Contact',    href: '#contact' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export function Navbar() {
@@ -29,7 +29,7 @@ export function Navbar() {
   const mobileMenu = {
     hidden: { opacity: 0, height: 0 },
     visible: { opacity: 1, height: 'auto', transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const } },
-    exit:   { opacity: 0, height: 0,    transition: { duration: 0.2, ease: [0.55, 0, 0.8, 0.45] as const } },
+    exit: { opacity: 0, height: 0, transition: { duration: 0.2, ease: [0.55, 0, 0.8, 0.45] as const } },
   } as const
 
   return (
@@ -68,7 +68,7 @@ export function Navbar() {
             </div>
             <a
               className="nav__cta"
-              href="/resume.pdf"
+              href="/Zuniga, Moises Resume NJIT Spring 2026.pdf"
               target="_blank"
               rel="noreferrer"
               aria-label="View resume PDF in a new tab"

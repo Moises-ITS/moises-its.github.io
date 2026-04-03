@@ -84,10 +84,10 @@ export function Projects() {
             <span className="section-label">Selected Work</span>
           </div>
           <h2 className="section-head__h2" id="projects-heading">
-            Real World Systems
+            AI systems built
           </h2>
           <p className="section-head__sub">
-            Projects Built with Intent.
+            End-to-end ML pipelines, language models, and AI-powered applications.
           </p>
         </div>
         <span className="projects__count">{String(projects.length).padStart(2, '0')} projects</span>

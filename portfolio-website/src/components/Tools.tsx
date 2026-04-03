@@ -4,10 +4,10 @@ import { skillGroups, certifications } from '../data'
 /* ─── Group accent config ────────────────────────────────────────────────────── */
 
 const groupConfig: Record<string, { color: string; glow: string; icon: string }> = {
-  Security:    { color: 'var(--red)',    glow: 'rgba(255,107,91,0.18)',   icon: '🛡' },
-  Languages:   { color: 'var(--blue)',   glow: 'rgba(91,173,255,0.18)',   icon: '{ }' },
-  Engineering: { color: 'var(--violet)', glow: 'rgba(157,123,255,0.18)', icon: '⚙' },
-  'AI & Data': { color: 'var(--cyan)',   glow: 'rgba(94,245,208,0.16)',   icon: '◈' },
+  'AI & Machine Learning': { color: 'var(--blue)',   glow: 'rgba(251,191,36,0.18)',   icon: '◈' },
+  Languages:               { color: 'var(--violet)', glow: 'rgba(167,139,250,0.18)',  icon: '{ }' },
+  Engineering:             { color: 'var(--cyan)',   glow: 'rgba(52,211,153,0.16)',   icon: '⚙' },
+  'Cloud & MLOps':         { color: 'var(--red)',    glow: 'rgba(251,146,60,0.18)',   icon: '☁' },
 }
 
 /* ─── Variants ───────────────────────────────────────────────────────────────── */
@@ -40,10 +40,10 @@ export function Tools() {
             <span className="section-label">Stack</span>
           </div>
           <h2 className="section-head__h2" id="tools-heading">
-            Tools &amp; technologies
+            Stack &amp; tools
           </h2>
           <p className="section-head__sub">
-            The stack I reach for when building secure, production-quality systems.
+            The stack I use to build intelligent, production-ready AI systems.
           </p>
         </div>
       </div>

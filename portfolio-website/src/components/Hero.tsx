@@ -54,8 +54,8 @@ export function Hero() {
 
         {/* Tagline */}
         <motion.p className="hero__tagline" variants={fadeUp}>
-          Computer Science student building scaleable systems at the intersection of
-          defense, AI, and software engineering.
+          Computer Science student building AI systems — ML pipelines, language models,
+          and full-stack applications that actually work in production.
         </motion.p>
 
         {/* CTAs */}
