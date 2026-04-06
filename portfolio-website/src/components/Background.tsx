@@ -3,8 +3,6 @@ import { Eye } from 'lucide-react'
 import { milestones } from '../data'
 import type { Milestone } from '../types'
 
-/* ─── Unified timeline data (chronological) ─────────────────────────────────── */
-
 const typeColors: Record<Milestone['type'], string> = {
   education: 'var(--blue)',
   work: 'var(--violet)',
@@ -14,10 +12,10 @@ const typeColors: Record<Milestone['type'], string> = {
 const typeLabels: Record<Milestone['type'], string> = {
   education: 'Education',
   work: 'Experience',
-  cert: 'Certification',
+  cert: 'Project',
 }
 
-/* ─── Single milestone node ─────────────────────────────────────────────────── */
+/* ─── Milestone card ─────────────────────────────────────────────────────────── */
 
 function MilestoneNode({
   milestone,
@@ -31,37 +29,57 @@ function MilestoneNode({
   reduced: boolean
 }) {
   const accent = typeColors[milestone.type]
-  const glow = `color-mix(in srgb, ${accent} 14%, transparent)`
+  const glow = `color-mix(in srgb, ${accent} 12%, transparent)`
+
+  const card = (
+    <motion.div
+      className={`vtl__card card vtl__card--${side}`}
+      initial={{ opacity: 0, x: side === 'left' ? -24 : 24 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : index * 0.08 }}
+    >
+      <div className="vtl__card-bar" style={{ background: accent }} />
+      <div className="vtl__card-head">
+        <span
+          className="vtl__card-date"
+          style={{
+            color: accent,
+            borderColor: `color-mix(in srgb, ${accent} 28%, transparent)`,
+            background: glow,
+          }}
+        >
+          {milestone.date}
+        </span>
+        <span className="vtl__card-type" style={{ color: accent }}>
+          {typeLabels[milestone.type]}
+        </span>
+      </div>
+      <h3 className="vtl__card-title">{milestone.title}</h3>
+      <p className="vtl__card-org" style={{ color: accent }}>{milestone.org}</p>
+      <p className="vtl__card-detail">{milestone.detail}</p>
+    </motion.div>
+  )
 
   return (
-    <div className={`vtl__item vtl__item--${side}`}>
-      {/* Dot on the line */}
-      <div className="vtl__dot" style={{ background: accent, boxShadow: `0 0 12px ${accent}` }} />
+    <div className="vtl__entry">
+      {/* Col 1 — card (left) or empty spacer (right) */}
+      <div className="vtl__col vtl__col--left">
+        {side === 'left' && card}
+      </div>
 
-      {/* Card */}
-      <motion.div
-        className="vtl__card card"
-        initial={{ opacity: 0, x: side === 'left' ? -28 : 28 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay: reduced ? 0 : index * 0.1 }}
-      >
-        {/* Accent bar */}
-        <div className="vtl__card-bar" style={{ background: accent }} />
+      {/* Col 2 — center spine with dot */}
+      <div className="vtl__spine-col" aria-hidden="true">
+        <div
+          className="vtl__dot"
+          style={{ background: accent, boxShadow: `0 0 10px ${accent}` }}
+        />
+      </div>
 
-        <div className="vtl__card-head">
-          <span className="vtl__card-date" style={{ color: accent, borderColor: `color-mix(in srgb, ${accent} 28%, transparent)`, background: glow }}>
-            {milestone.date}
-          </span>
-          <span className="vtl__card-type" style={{ color: accent }}>
-            {typeLabels[milestone.type]}
-          </span>
-        </div>
-
-        <h3 className="vtl__card-title">{milestone.title}</h3>
-        <p className="vtl__card-org" style={{ color: accent }}>{milestone.org}</p>
-        <p className="vtl__card-detail">{milestone.detail}</p>
-      </motion.div>
+      {/* Col 3 — card (right) or empty spacer (left) */}
+      <div className="vtl__col vtl__col--right">
+        {side === 'right' && card}
+      </div>
     </div>
   )
 }
@@ -108,17 +126,18 @@ export function Background() {
         ))}
       </div>
 
-      {/* Vertical timeline */}
+      {/* Timeline */}
       <div className="vtl">
-        {/* The center line */}
-        <div className="vtl__line" aria-hidden="true" />
-
-        {/* Starting point */}
-        <div className="vtl__start">
-          <span className="vtl__start-label">Sep 2024</span>
+        {/* Sep 2024 cap */}
+        <div className="vtl__cap">
+          <div className="vtl__col vtl__col--left" />
+          <div className="vtl__spine-col">
+            <span className="vtl__cap-label">Sep 2024</span>
+          </div>
+          <div className="vtl__col vtl__col--right" />
         </div>
 
-        {/* Milestones */}
+        {/* Milestone entries */}
         {milestones.map((m, i) => (
           <MilestoneNode
             key={`${m.date}-${m.title}`}
@@ -129,9 +148,13 @@ export function Background() {
           />
         ))}
 
-        {/* Present marker */}
-        <div className="vtl__end">
-          <span className="vtl__end-label">Present</span>
+        {/* Present cap */}
+        <div className="vtl__cap">
+          <div className="vtl__col vtl__col--left" />
+          <div className="vtl__spine-col">
+            <span className="vtl__cap-label">Present</span>
+          </div>
+          <div className="vtl__col vtl__col--right" />
         </div>
       </div>
     </section>

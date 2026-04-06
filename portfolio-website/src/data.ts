@@ -9,99 +9,101 @@ export const personal: PersonalInfo = {
   email: 'mz397@njit.edu',
   github: 'https://github.com/Moises-ITS',
   githubHandle: 'github.com/Moises-ITS',
-  linkedin: 'https://www.linkedin.com/in/moises-zuniga2034894/',
-  linkedinHandle: 'linkedin.com/in/moises-zuniga2034894',
-  status: 'Seeking AI/ML internships',
+  linkedin: 'https://www.linkedin.com/in/moises-zuniga',
+  linkedinHandle: 'linkedin.com/in/moises-zuniga',
+  status: 'Open to internships',
   institution: 'NJIT · CS + AI Minor · Class of \'28',
-  bio: 'I build AI systems — from ML pipelines and fine-tuned language models to full-stack AI applications. Currently researching LLM privacy and security at NJIT under Prof. Nathan Malkin.',
+  bio: 'Computer Science student at NJIT with a minor in AI. I build things — full-stack apps, ML pipelines, and DevOps systems. Currently researching LLM security and privacy under Prof. Nathan Malkin.',
   tape: [
-    'Machine Learning',
-    'AI Engineering',
-    'LLMs',
-    'MLOps',
+    'React Native',
+    'TypeScript',
     'Python',
+    'AWS',
+    'DevOps',
+    'AI Research',
     'Full-Stack',
-    'Research',
-    'PyTorch',
-    'RAG',
-    'Data Science',
+    'Java',
+    'PostgreSQL',
+    'CI/CD',
+    'Docker',
+    'Github Actions',
   ],
 }
 
 export const projects: Project[] = [
   {
-    id: 'ml-intrusion',
+    id: 'shpe-app',
     number: '01',
-    title: 'AI Network Intrusion Detection Engine',
-    category: 'Applied ML',
-    year: '2025',
+    title: 'NJIT SHPE App',
+    category: 'Full-Stack · Mobile',
+    year: '2026',
     summary:
-      'An end-to-end ML pipeline for network traffic classification — from raw packet logs to a production-ready threat detection model with rigorous evaluation.',
+      'A production-level student engagement platform for NJIT\'s SHPE chapter with posts, events, and leaderboards — used by real students every day.',
     challenge:
-      'Improving malicious packet detection without letting data leakage or class imbalance undermine trust in the model.',
+      'Building scalable, real-time features that hold up in production for a growing student community.',
     contribution:
-      'Designed the full preprocessing pipeline, engineered discriminative features, tuned XGBoost with stratified cross-validation, and built a reproducible evaluation harness.',
+      'Designed scalable frontend components and backend integrations, implemented CI/CD pipelines, and collaborated in an agile team to enhance system architecture.',
     impact:
-      'Detected 30,600+ malicious instances across 257,000+ network flows while lowering false positives by ~9%.',
-    stack: ['Python', 'XGBoost', 'Scikit-Learn', 'Pandas', 'NumPy', 'Feature Engineering'],
-    repo: 'https://github.com/Moises-ITS/Machine-Learning-Packet-Inspector-V2',
-    accent: 'violet',
+      'Improved deployment consistency and reduced manual release overhead through automated CI/CD. Active production app used by NJIT SHPE members.',
+    stack: ['React Native', 'TypeScript', 'Expo', 'Supabase', 'GitHub Actions'],
+    accent: 'cyan',
     buildNote:
-      'Good models fail silently in production. I focused on building something I could actually explain and trust — that meant prioritizing evaluation discipline over raw accuracy.',
-  },
-  {
-    id: 'domain-llm',
-    number: '02',
-    title: 'Domain-Adapted LLM for Cyber Intelligence',
-    category: 'Language Models',
-    year: '2025',
-    summary:
-      'A 500M parameter transformer built from scratch and domain-adapted on cybersecurity corpora to reason over threat intelligence, CVEs, and security documentation.',
-    challenge:
-      'Adapting general-purpose language model architecture to a specialized domain with limited, high-signal training data.',
-    contribution:
-      'Implemented the transformer architecture in PyTorch, curated and preprocessed the domain corpus, and designed the training and evaluation regime.',
-    impact:
-      'Achieved coherent domain-specific generation and factual retrieval across security intelligence tasks.',
-    stack: ['PyTorch', 'Transformers', 'Python', 'HuggingFace', 'CUDA', 'NLP'],
-    accent: 'blue',
-    buildNote:
-      'Training a model from scratch forces you to understand every design decision. There is no black box to blame when things break.',
+      'This was my first time shipping a mobile app to real users. Production is a completely different problem than local dev — I learned that fast.',
   },
   {
     id: 'jithub',
-    number: '03',
-    title: 'JitHub — ML-Powered Campus Platform',
-    category: 'Full-Stack AI',
-    year: '2025–2026',
+    number: '02',
+    title: 'JitHub — Bank of America Hackathon',
+    category: 'Full-Stack · AI',
+    year: '2026',
     summary:
-      'A large-scale campus opportunity aggregator for NJIT students that uses machine learning to surface relevant internships, research positions, and events with personalized ranking.',
+      'A full-stack platform built at the Bank of America Code-A-Thon that uses graph data structures to model relationships between students, companies, and opportunities.',
     challenge:
-      'Aggregating noisy, heterogeneous campus data sources and building an ML layer that surfaces genuinely useful results — not just recent ones.',
+      'Modeling complex many-to-many relationships between users and opportunities in a way that enables fast, relevant querying.',
     contribution:
-      'Architected the data ingestion pipeline, built the ML ranking model, and developed the full-stack application with React and TypeScript.',
+      'Engineered backend APIs with Node.js/Express, integrated PostgreSQL + Neo4j for hybrid relational/graph queries, implemented Clerk auth, and built interactive D3-style visualizations in React.',
     impact:
-      'Centralizes fragmented campus opportunity data into a single ranked feed for NJIT students.',
-    stack: ['Python', 'TypeScript', 'React', 'PostgreSQL', 'Scikit-Learn', 'REST APIs'],
-    accent: 'cyan',
+      'Delivered a working platform in a timed hackathon. Graph-based data model enabled connection traversal that traditional relational queries couldn\'t express.',
+    stack: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Neo4j', 'FastAPI', 'Clerk'],
+    accent: 'violet',
     buildNote:
-      'Relevance ranking is a product problem as much as an ML problem. Getting the data pipeline right was 70% of the work.',
+      'Graph databases unlock query patterns that SQL just can\'t do elegantly. Neo4j made the relationship traversal obvious — the hard part was the hybrid schema.',
   },
   {
-    id: 'devsecops-pipeline',
-    number: '04',
-    title: 'Automated DevSecOps Pipeline',
-    category: 'MLOps & Engineering',
-    year: '2025',
+    id: 'ml-packet',
+    number: '03',
+    title: 'Machine Learning Packet Analyzer',
+    category: 'Applied ML · Security',
+    year: '2026',
     summary:
-      'A fully automated CI/CD pipeline with real-time cloud monitoring, infrastructure-as-code enforcement, and secrets management to prevent vulnerabilities before deployment.',
+      'An end-to-end ML pipeline for network traffic classification — detecting malicious events across hundreds of thousands of packet logs with high precision.',
     challenge:
-      'Building security gates that are tight enough to catch real issues without slowing down the development loop.',
+      'Avoiding data leakage and class imbalance while building a model trustworthy enough for security decisions.',
     contribution:
-      'Authored Terraform modules, configured GitHub Actions workflows, containerized services with Docker, and integrated automated vulnerability scanning.',
+      'Built the full preprocessing pipeline, engineered discriminative features, tuned XGBoost with stratified cross-validation, and reduced false positives through feature engineering.',
     impact:
-      'Eliminated credential leaks and enforced continuous cloud compliance, significantly reducing remediation time at scale.',
-    stack: ['Python', 'Terraform', 'GitHub Actions', 'Docker', 'AWS', 'CI/CD'],
+      'Detected 30,600+ malicious events across 257,000+ logs. Reduced false positives by ~9% through feature engineering and model tuning.',
+    stack: ['Python', 'Scikit-Learn', 'XGBoost', 'Pandas', 'NumPy'],
+    repo: 'https://github.com/Moises-ITS/Machine-Learning-Packet-Inspector-V2',
+    accent: 'blue',
+    buildNote:
+      'Good models fail silently. I prioritized evaluation discipline over raw accuracy — every metric had to be explainable before I called it done.',
+  },
+  {
+    id: 'cloud-devsecops',
+    number: '04',
+    title: 'Cloud DevOps Platform',
+    category: 'DevOps · Cloud Security',
+    year: '2026',
+    summary:
+      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
+    challenge:
+      'Building security gates tight enough to catch real vulnerabilities without slowing down the development loop.',
+    contribution:
+      'Authored Terraform modules, configured GitHub Actions with CodeQL/Snyk/Trivy/Checkov, built an event-driven AWS Config + Lambda system for S3 auto-remediation, and integrated Truffle Hog + Git-Guardian for secret detection.',
+    impact:
+      'Blocked 100% of high-severity vulnerabilities pre-deployment. Reduced remediation costs by 40x. Enforced compliance within seconds of detecting misconfigs.',
+    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
     repo: 'https://github.com/Moises-ITS/CloudSecurity',
     accent: 'red',
     buildNote:
@@ -111,40 +113,40 @@ export const projects: Project[] = [
 
 export const research: ResearchItem[] = [
   {
-    id: 'llm-privacy',
+    id: 'llm-security',
     number: '01',
-    title: 'LLM Privacy & Security Research',
+    title: 'LLM Security & Privacy Research',
     status: 'Active',
     summary:
-      'Evaluating real-world privacy and security risks of LLM-powered web agents under Prof. Nathan Malkin — uncovering failures in automated decision-making, consent handling, and data exposure through structured threat modeling.',
-    tags: ['LLMs', 'Privacy', 'Security', 'Threat Modeling', 'Research'],
+      'Undergraduate research under Prof. Nathan Malkin at NJIT — simulating real-world attack scenarios on 30+ LLM-powered systems, evaluating agent autonomy vs. user control, and applying threat modeling to production-like data pipelines.',
+    tags: ['LLMs', 'Privacy', 'Security', 'Threat Modeling', 'Agent Systems'],
   },
   {
-    id: 'ai-dev-assistant',
+    id: 'haccs-web',
     number: '02',
-    title: 'AI-Powered Developer Assistant (VS Code)',
+    title: 'HACCS Website — Webmaster',
     status: 'Building',
     summary:
-      'A context-aware AI assistant that integrates into VS Code to perform intelligent code review, vulnerability detection, secrets scanning, and LLM-powered remediation guidance for real-world codebases.',
-    tags: ['LLMs', 'RAG', 'VS Code Extension', 'Python', 'LangChain'],
+      'Architecting and maintaining the Hispanic & Latin Association of College Computing Students website. Implementing responsive design, optimizing performance across devices, and supporting student engagement and event visibility.',
+    tags: ['React', 'TypeScript', 'Web Performance', 'Responsive Design'],
   },
   {
-    id: 'aws-cloud-ml',
+    id: 'shpe-dev',
     number: '03',
-    title: 'AWS Cloud Engineering & MLOps',
+    title: 'SHPE App — Ongoing Development',
     status: 'In Progress',
     summary:
-      'Building production-ready ML infrastructure on AWS — model deployment pipelines, IAM policy design, S3 data lakes, EC2/Lambda compute, and CloudTrail observability for AI workloads.',
-    tags: ['AWS', 'MLOps', 'IAM', 'Python', 'Cloud Infrastructure'],
+      'Continued contribution to the NJIT SHPE student engagement platform. Developing new frontend components in React Native/TypeScript and collaborating on feature implementation and UI improvements.',
+    tags: ['React Native', 'TypeScript', 'Expo', 'Supabase', 'Mobile'],
   },
   {
-    id: 'feature-research',
+    id: 'security-plus',
     number: '04',
-    title: 'ML Feature Engineering Research',
-    status: 'Exploring',
+    title: 'Depth Draft',
+    status: 'In Progress',
     summary:
-      'Investigating advanced feature engineering and representation learning techniques for structured tabular data — testing how domain-informed feature design affects gradient boosting and neural model performance.',
-    tags: ['Feature Engineering', 'XGBoost', 'PyTorch', 'Tabular ML', 'Python'],
+      'Monocular depth estimation model trained with PyTorch that outputs a 3D point cloud from a single image — pairs perfectly with AR glasses hardware work.',
+    tags: ['Pytorch', 'Computer Vision', 'AR/Embedded', 'Point Cloud'],
   },
 ]
 
@@ -153,7 +155,7 @@ export const milestones: Milestone[] = [
     date: 'Sep 2024',
     title: 'Started B.S. Computer Science',
     org: 'New Jersey Institute of Technology',
-    detail: 'Minor in Artificial Intelligence · Newark, NJ · GPA 3.5',
+    detail: 'Minor in Artificial Intelligence · Newark, NJ · GPA 3.5 · Expected May 2028',
     type: 'education',
   },
   {
@@ -161,57 +163,47 @@ export const milestones: Milestone[] = [
     title: 'IT Support Specialist',
     org: 'NJIT Civil Engineering',
     detail:
-      'Managed systems infrastructure for a department of users — troubleshooting hardware and software issues, streamlining workstation provisioning, and maintaining campus technology assets.',
+      'Resolved 25+ weekly technical issues across hardware, software, and networking for 50+ users. Reduced workstation deployment time by 30–40% through standardized configurations and automation. Managed 100+ IT assets.',
     type: 'work',
   },
   {
-    date: 'Jan 2025',
-    title: 'ML & AI Systems Development',
-    org: 'Independent',
-    detail:
-      'Built the AI Network Intrusion Detection Engine and began domain LLM development — grounding ML theory in production-quality pipelines with real evaluation discipline.',
-    type: 'cert',
-  },
-  {
-    date: 'Sep 2025',
-    title: 'CompTIA Network+ Certification',
-    org: 'CompTIA',
-    detail:
-      'Validated foundational networking and systems knowledge — the substrate that makes ML applied to real infrastructure problems tractable.',
-    type: 'cert',
-  },
-  {
     date: 'Mar 2026',
-    title: 'Undergraduate Researcher',
-    org: 'Professor Nathan Malkin · NJIT',
+    title: 'Undergraduate Research Assistant',
+    org: 'Prof. Nathan Malkin · NJIT',
     detail:
-      'Researching the real-world security and privacy risks of LLM-powered web agents — developing structured testing methods and threat models to evaluate how user data is managed by autonomous AI systems.',
+      'Researching real-world security and privacy risks in LLM-powered autonomous agents. Simulating attack scenarios, analyzing system behavior, and building scalable testing frameworks.',
     type: 'work',
   },
 ]
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: 'AI & Machine Learning',
-    items: ['PyTorch', 'Scikit-Learn', 'XGBoost', 'HuggingFace', 'LangChain', 'Pandas', 'NumPy', 'Feature Engineering'],
+    label: 'Frontend',
+    items: ['React', 'React Native', 'TypeScript', 'JavaScript', 'D3.js', 'HTML/CSS', 'Expo'],
   },
   {
-    label: 'Languages',
-    items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'HTML/CSS', 'Bash'],
+    label: 'Backend & APIs',
+    items: ['Node.js', 'Express', 'FastAPI', 'Flask', 'REST APIs', 'Python', 'SQL'],
   },
   {
-    label: 'Engineering',
-    items: ['React', 'Flask', 'PostgreSQL', 'Git / GitHub', 'REST APIs', 'Docker', 'Linux'],
+    label: 'Databases',
+    items: ['PostgreSQL', 'Neo4j', 'Supabase', 'Railway'],
   },
   {
-    label: 'Cloud & MLOps',
-    items: ['AWS', 'Terraform', 'GitHub Actions', 'CI/CD', 'IAM', 'EC2 / Lambda'],
+    label: 'Cloud & DevOps',
+    items: ['AWS', 'Terraform', 'Docker', 'GitHub Actions', 'IAM', 'CloudTrail', 'Lambda'],
+  },
+  {
+    label: 'AI & Security',
+    items: ['Scikit-Learn', 'XGBoost', 'Pandas', 'NumPy', 'LLM APIs', 'MCP', 'AI Agents', 'SAST/SCA'],
+  },
+  {
+    label: 'Tools',
+    items: ['Git', 'GitHub', 'Linux', 'Java', 'Bash', 'Machine Learning'],
   },
 ]
 
 export const certifications = [
-  { label: 'CompTIA Network+', status: 'Earned' },
   { label: 'NJIT Cybersecurity Certificate', status: 'Earned' },
-  { label: 'CompTIA Security+', status: 'In Progress' },
   { label: 'AWS Solutions Architect', status: 'Planned' },
 ]

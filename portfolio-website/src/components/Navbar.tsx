@@ -68,7 +68,7 @@ export function Navbar() {
             </div>
             <a
               className="nav__cta"
-              href="/Zuniga, Moises Resume NJIT Spring 2026.pdf"
+              href="/resume.pdf"
               target="_blank"
               rel="noreferrer"
               aria-label="View resume PDF in a new tab"

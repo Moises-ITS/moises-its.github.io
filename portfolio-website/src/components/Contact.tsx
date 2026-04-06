@@ -1,84 +1,150 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Mail, MapPin, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { personal } from '../data'
 
-/* ─── Contact Section ────────────────────────────────────────────────────────── */
+/* ─── Animation helpers ─────────────────────────────────────────────────────────── */
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.15 } as const,
+  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay },
+})
+
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+}
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 28, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
+  },
+}
+
+/* ─── Contact card data ─────────────────────────────────────────────────────────── */
+
+const contactLinks = [
+  {
+    type: 'email' as const,
+    label: 'Email',
+    value: personal.email,
+    href: `mailto:${personal.email}`,
+    cta: 'Send a message',
+    icon: <Mail size={22} aria-hidden="true" />,
+    external: false,
+  },
+  {
+    type: 'github' as const,
+    label: 'GitHub',
+    value: personal.githubHandle,
+    href: personal.github,
+    cta: 'View my work',
+    icon: <GithubIcon size={22} aria-hidden="true" />,
+    external: true,
+  },
+  {
+    type: 'linkedin' as const,
+    label: 'LinkedIn',
+    value: personal.linkedinHandle,
+    href: personal.linkedin,
+    cta: 'Connect with me',
+    icon: <LinkedinIcon size={22} aria-hidden="true" />,
+    external: true,
+  },
+]
+
+/* ─── Contact Section ────────────────────────────────────────────────────────────── */
 
 export function Contact() {
   const reduced = useReducedMotion() ?? false
 
-  const revealCard = {
-    initial: { opacity: 0, y: 32 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.15 } as const,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
-  }
-
-  const links = [
-    {
-      icon: <Mail size={18} aria-hidden="true" />,
-      label: personal.email,
-      href: `mailto:${personal.email}`,
-      external: false,
-    },
-    {
-      icon: <GithubIcon size={18} aria-hidden="true" />,
-      label: personal.githubHandle,
-      href: personal.github,
-      external: true,
-    },
-    {
-      icon: <LinkedinIcon size={18} aria-hidden="true" />,
-      label: personal.linkedinHandle,
-      href: personal.linkedin,
-      external: true,
-    },
-  ]
-
   return (
     <section className="contact section" id="contact" aria-labelledby="contact-heading">
-      <div style={{ marginBottom: '1.1rem' }}>
-        <span className="section-label">Contact</span>
-      </div>
 
-      <motion.div className="contact-card card" {...(reduced ? {} : revealCard)}>
-        {/* Copy */}
-        <div className="contact-card__copy">
-          <h2 className="contact-card__h2" id="contact-heading">
-            Open to the right opportunities
-          </h2>
-          <p className="contact-card__body">
-            If you're hiring, building, or just want to connect on cybersecurity,
-            AI, or systems work — I'd be glad to connect. I'm looking for internships
-            where the worlds of security and engineering meet.
-          </p>
-        </div>
-
-        {/* Links */}
-        <div className="contact-links">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              className="contact-link"
-              href={link.href}
-              {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-              aria-label={link.label}
-            >
-              <span className="contact-link__icon">{link.icon}</span>
-              <span className="contact-link__text">{link.label}</span>
-              <ArrowUpRight size={15} className="contact-link__arrow" aria-hidden="true" />
-            </a>
-          ))}
-
-          <div className="contact-location" aria-label={`Location: ${personal.location}`}>
-            <span className="contact-location__icon">
-              <MapPin size={16} aria-hidden="true" />
-            </span>
-            <span className="contact-location__text">{personal.location}</span>
-          </div>
-        </div>
+      {/* Header */}
+      <motion.div
+        className="contact__header"
+        {...(reduced ? {} : fadeUp(0))}
+      >
+        <span className="section-label contact__eyebrow">Contact</span>
+        <h2 className="contact__heading" id="contact-heading">
+          Let&rsquo;s build something
+          <br />
+          <span className="grad">worth talking about.</span>
+        </h2>
+        <p className="contact__sub">
+          Open to internships where security and engineering meet.
+          If you&rsquo;re hiring, building, or just want to talk shop — reach out.
+        </p>
       </motion.div>
+
+      {/* Cards */}
+      <motion.div
+        className="contact__cards"
+        variants={reduced ? undefined : staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        aria-label="Contact links"
+      >
+        {contactLinks.map((link) => (
+          <motion.a
+            key={link.href}
+            className={`contact__card contact__card--${link.type}`}
+            href={link.href}
+            {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+            aria-label={`${link.label}: ${link.value}`}
+            variants={reduced ? undefined : cardVariant}
+            whileHover={reduced ? undefined : { y: -6 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+          >
+            {/* Glow blob */}
+            <span className="contact__card-blob" aria-hidden="true" />
+
+            {/* Icon */}
+            <span className="contact__card-icon" aria-hidden="true">
+              {link.icon}
+            </span>
+
+            {/* Label */}
+            <span className="contact__card-label">{link.label}</span>
+
+            {/* Value */}
+            <span className="contact__card-value">{link.value}</span>
+
+            {/* CTA row */}
+            <span className="contact__card-cta" aria-hidden="true">
+              {link.cta}
+              <ArrowUpRight size={14} />
+            </span>
+          </motion.a>
+        ))}
+      </motion.div>
+
+      {/* Location */}
+      <motion.div
+        className="contact__location"
+        aria-label={`Location: ${personal.location}`}
+        {...(reduced ? {} : fadeUp(0.2))}
+      >
+        <MapPin size={15} aria-hidden="true" />
+        <span>{personal.location}</span>
+      </motion.div>
+
+      {/* Footer strip */}
+      <div className="contact__footer-strip">
+        <p className="contact__footer-copy">
+          &copy; {new Date().getFullYear()} Moises Zuniga — All rights reserved.
+        </p>
+        <span className="contact__footer-mark">MZ</span>
+      </div>
     </section>
   )
 }

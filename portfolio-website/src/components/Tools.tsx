@@ -4,10 +4,12 @@ import { skillGroups, certifications } from '../data'
 /* ─── Group accent config ────────────────────────────────────────────────────── */
 
 const groupConfig: Record<string, { color: string; glow: string; icon: string }> = {
-  'AI & Machine Learning': { color: 'var(--blue)',   glow: 'rgba(251,191,36,0.18)',   icon: '◈' },
-  Languages:               { color: 'var(--violet)', glow: 'rgba(167,139,250,0.18)',  icon: '{ }' },
-  Engineering:             { color: 'var(--cyan)',   glow: 'rgba(52,211,153,0.16)',   icon: '⚙' },
-  'Cloud & MLOps':         { color: 'var(--red)',    glow: 'rgba(251,146,60,0.18)',   icon: '☁' },
+  'Frontend':          { color: 'var(--blue)',   glow: 'rgba(91,171,255,0.18)',   icon: '⬡' },
+  'Backend & APIs':    { color: 'var(--violet)', glow: 'rgba(167,139,250,0.18)',  icon: '⚡' },
+  'Databases':         { color: 'var(--cyan)',   glow: 'rgba(52,211,153,0.16)',   icon: '◈' },
+  'Cloud & DevOps':    { color: 'var(--red)',    glow: 'rgba(251,146,60,0.18)',   icon: '☁' },
+  'AI & Security':     { color: 'var(--gold)',   glow: 'rgba(251,191,36,0.18)',   icon: '◆' },
+  'Tools':             { color: 'var(--text-2)', glow: 'rgba(154,170,196,0.12)',  icon: '⊞' },
 }
 
 /* ─── Variants ───────────────────────────────────────────────────────────────── */
@@ -43,7 +45,7 @@ export function Tools() {
             Stack &amp; tools
           </h2>
           <p className="section-head__sub">
-            The stack I use to build intelligent, production-ready AI systems.
+            The languages, frameworks, and platforms I reach for when shipping real things.
           </p>
         </div>
       </div>
