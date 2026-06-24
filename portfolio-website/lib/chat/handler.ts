@@ -1,6 +1,5 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import OpenAI from "openai";
+import { ABOUT_MD, PROJECTS_MD } from "./context";
 import { ZodError } from "zod";
 import {
   parseChatRequest,
@@ -20,17 +19,8 @@ function getOpenAI() {
   return _openai;
 }
 
-let _aboutMd: string | null = null;
-let _projectsMd: string | null = null;
-
 function loadContext(): { about: string; projects: string } {
-  if (!_aboutMd) {
-    _aboutMd = readFileSync(resolve(process.cwd(), "about.md"), "utf-8");
-  }
-  if (!_projectsMd) {
-    _projectsMd = readFileSync(resolve(process.cwd(), "projects.md"), "utf-8");
-  }
-  return { about: _aboutMd, projects: _projectsMd };
+  return { about: ABOUT_MD, projects: PROJECTS_MD };
 }
 
 export const FALLBACK_MESSAGE =

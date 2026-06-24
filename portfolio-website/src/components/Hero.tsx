@@ -61,7 +61,8 @@ export function Hero() {
       >
         <div className="hero__text">
           <motion.h1 className="hero__greeting" variants={fadeUp}>
-            I'm <span className="hero__name-accent">{personal.firstName}</span>
+            Hi, I'm{" "}
+            <span className="hero__name-accent">{personal.firstName}</span>
           </motion.h1>
 
           <motion.p className="hero__typing" variants={fadeUp}>
@@ -99,7 +100,7 @@ export function Hero() {
                 animate={avatarEnter}
                 exit={avatarExit}
               >
-                <img src="/0Z0A6044.jpg" alt={`${personal.name} portrait`} />
+                <img src="/avatar.jpg" alt={`${personal.name} portrait`} />
               </motion.div>
             )}
           </AnimatePresence>
