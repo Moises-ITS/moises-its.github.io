@@ -3,7 +3,7 @@ import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { personal } from '../data'
 
-/* ─── Animation helpers ─────────────────────────────────────────────────────────── */
+/* ─── Animation helpers ────────────────────────────────────────────────────── */
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 32 },
@@ -27,14 +27,14 @@ const cardVariant = {
   },
 }
 
-/* ─── Contact card data ─────────────────────────────────────────────────────────── */
+/* ─── Contact card data ────────────────────────────────────────────────────── */
 
 const contactLinks = [
   {
     type: 'email' as const,
     label: 'Email',
     value: personal.email,
-    href: `mailto:${personal.email}`,
+    href: personal.emailMailto,
     cta: 'Send a message',
     icon: <Mail size={22} aria-hidden="true" />,
     external: false,
@@ -59,34 +59,26 @@ const contactLinks = [
   },
 ]
 
-/* ─── Contact Section ────────────────────────────────────────────────────────────── */
+/* ─── Contact Section ──────────────────────────────────────────────────────── */
 
 export function Contact() {
   const reduced = useReducedMotion() ?? false
 
   return (
-    <section className="contact section" id="contact" aria-labelledby="contact-heading">
-
+    <section className="section contact-section" id="contact" aria-labelledby="contact-heading">
       {/* Header */}
       <motion.div
-        className="contact__header"
+        className="section-header"
         {...(reduced ? {} : fadeUp(0))}
       >
-        <span className="section-label contact__eyebrow">Contact</span>
-        <h2 className="contact__heading" id="contact-heading">
-          Let&rsquo;s build something
-          <br />
-          <span className="grad">worth talking about.</span>
+        <h2 className="section-title" id="contact-heading">
+          Get In <span className="accent-text">Touch</span>
         </h2>
-        <p className="contact__sub">
-          Open to internships where security and engineering meet.
-          If you&rsquo;re hiring, building, or just want to talk shop — reach out.
-        </p>
       </motion.div>
 
       {/* Cards */}
       <motion.div
-        className="contact__cards"
+        className="contact-cards"
         variants={reduced ? undefined : staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -96,31 +88,19 @@ export function Contact() {
         {contactLinks.map((link) => (
           <motion.a
             key={link.href}
-            className={`contact__card contact__card--${link.type}`}
+            className={`contact-card glass-card contact-card--${link.type} contact-card__link`}
             href={link.href}
-            {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             aria-label={`${link.label}: ${link.value}`}
             variants={reduced ? undefined : cardVariant}
-            whileHover={reduced ? undefined : { y: -6 }}
+            whileHover={{ y: -6 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
           >
-            {/* Glow blob */}
-            <span className="contact__card-blob" aria-hidden="true" />
-
-            {/* Icon */}
-            <span className="contact__card-icon" aria-hidden="true">
-              {link.icon}
-            </span>
-
-            {/* Label */}
-            <span className="contact__card-label">{link.label}</span>
-
-            {/* Value */}
-            <span className="contact__card-value">{link.value}</span>
-
-            {/* CTA row */}
-            <span className="contact__card-cta" aria-hidden="true">
+            <span className="contact-card__icon">{link.icon}</span>
+            <span className="contact-card__label">{link.label}</span>
+            <span className="contact-card__value">{link.value}</span>
+            <span className="contact-card__cta">
               {link.cta}
               <ArrowUpRight size={14} />
             </span>
@@ -130,7 +110,7 @@ export function Contact() {
 
       {/* Location */}
       <motion.div
-        className="contact__location"
+        className="contact-location"
         aria-label={`Location: ${personal.location}`}
         {...(reduced ? {} : fadeUp(0.2))}
       >
@@ -138,12 +118,12 @@ export function Contact() {
         <span>{personal.location}</span>
       </motion.div>
 
-      {/* Footer strip */}
-      <div className="contact__footer-strip">
-        <p className="contact__footer-copy">
+      {/* Footer */}
+      <div className="contact-footer">
+        <p className="contact-footer__copy">
           &copy; {new Date().getFullYear()} Moises Zuniga — All rights reserved.
         </p>
-        <span className="contact__footer-mark">MZ</span>
+        <span className="contact-footer__mark">MZ</span>
       </div>
     </section>
   )

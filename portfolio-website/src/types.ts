@@ -1,5 +1,3 @@
-export type AccentColor = 'blue' | 'violet' | 'cyan' | 'red'
-
 export interface Project {
   id: string
   number: string
@@ -7,37 +5,12 @@ export interface Project {
   category: string
   year: string
   summary: string
-  challenge: string
-  contribution: string
-  impact: string
   stack: string[]
-  repo?: string
-  accent: AccentColor
-  buildNote: string
-}
-
-export interface ResearchItem {
-  id: string
-  number: string
-  title: string
-  status: 'Active' | 'Building' | 'Exploring' | 'In Progress'
-  summary: string
-  tags: string[]
-}
-
-export interface TimelineEntry {
-  range: string
-  title: string
-  org: string
-  detail: string
-}
-
-export interface Milestone {
-  date: string
-  title: string
-  org: string
-  detail: string
-  type: 'education' | 'work' | 'cert'
+  /** GitHub repo URL — update in data.ts when ready */
+  repo: string
+  /** Optional preview image — place file in public/projects/ then set path, e.g. `/projects/shpe-app.jpg` */
+  image?: string
+  accent: 'blue' | 'violet' | 'cyan' | 'red'
 }
 
 export interface SkillGroup {
@@ -52,6 +25,7 @@ export interface PersonalInfo {
   titleLine: string
   location: string
   email: string
+  emailMailto: string
   github: string
   githubHandle: string
   linkedin: string
@@ -59,5 +33,4 @@ export interface PersonalInfo {
   status: string
   institution: string
   bio: string
-  tape: string[]
 }

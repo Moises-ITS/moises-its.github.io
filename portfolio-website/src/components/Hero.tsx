@@ -1,102 +1,110 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { personal } from '../data'
-
-/* ─── Animation Variants ────────────────────────────────────────────────────────── */
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { personal } from "../data";
+import { ChatBot } from "./ChatBot";
+import { GooeyLoader } from "./ui/gooey-loader";
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-}
+  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.15 } },
+};
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
   },
-}
+};
 
-/* ─── Hero ──────────────────────────────────────────────────────────────────────── */
+const avatarExit = {
+  opacity: 0,
+  scale: 0.8,
+  rotate: -10,
+  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+const avatarEnter = {
+  opacity: 1,
+  scale: 1,
+  rotate: 0,
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+const loaderEnter = {
+  opacity: 1,
+  scale: 1,
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const, delay: 0.15 },
+};
+
+const loaderExit = {
+  opacity: 0,
+  scale: 0.7,
+  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
+};
 
 export function Hero() {
-  const pref = useReducedMotion()
-  const { scrollY } = useScroll()
-  const parallaxY = useTransform(scrollY, [0, 600], [0, pref ? 0 : -40])
-  const parallaxOpacity = useTransform(scrollY, [0, 400], [1, pref ? 1 : 0.25])
+  const [isListening, setIsListening] = useState(false);
 
-  const tapeItems = [...personal.tape, ...personal.tape]
+  const handleRecordingChange = useCallback((recording: boolean) => {
+    setIsListening(recording);
+  }, []);
 
   return (
     <section className="hero" id="top" aria-label="Introduction">
-
-      {/* Two-column row */}
-      <div className="hero__row">
-
-        {/* LEFT — copy */}
-        <motion.div
-          className="hero__copy"
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Eyebrow */}
-          <motion.div className="hero__eyebrow" variants={fadeUp}>
-            <span className="section-label">{personal.institution}</span>
-            <div className="hero__status" aria-label="Status: Open to internships">
-              <span className="hero__status-dot" aria-hidden="true" />
-              <span>{personal.status}</span>
-            </div>
-          </motion.div>
-
-          {/* Name */}
-          <motion.h1 className="hero__name" aria-label={personal.name} variants={fadeUp}>
-            <span className="hero__name-first">{personal.firstName}</span>
-            <span className="hero__name-last">{personal.lastName}</span>
+      <motion.div
+        className="hero__center"
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="hero__text">
+          <motion.h1 className="hero__greeting" variants={fadeUp}>
+            I'm <span className="hero__name-accent">{personal.firstName}</span>
           </motion.h1>
 
-          {/* Tagline */}
-          <motion.p className="hero__tagline" variants={fadeUp}>
-            CS student at NJIT building full-stack apps, ML systems,
-            and DevOps pipelines. Currently researching LLM security&nbsp;&amp;&nbsp;privacy.
+          <motion.p className="hero__typing" variants={fadeUp}>
+            <span className="hero__typing-text">{personal.titleLine}</span>
+            <span className="hero__cursor" aria-hidden="true" />
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div className="hero__actions" variants={fadeUp}>
-            <a className="btn btn--solid" href="#projects">See my projects</a>
-            <a className="btn btn--ghost" href="#contact">Get in touch</a>
+          <motion.div className="hero__chatbot" variants={fadeUp}>
+            <ChatBot onRecordingChange={handleRecordingChange} />
           </motion.div>
-        </motion.div>
-
-        {/* RIGHT — photo */}
-        <motion.div
-          className="hero__photo"
-          style={{ y: parallaxY, opacity: parallaxOpacity }}
-          initial={{ opacity: 0, x: 40, scale: 0.96 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
-        >
-          <div className="hero__photo-frame">
-            <img src="/0Z0A6044.jpg" alt={`${personal.name} portrait`} />
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Scrolling tape */}
-      <motion.div
-        className="hero__tape"
-        aria-hidden="true"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.1 }}
-      >
-        <div className="tape__track" role="presentation">
-          {tapeItems.map((item, i) => (
-            <span key={`${item}-${i}`}>{item}</span>
-          ))}
         </div>
+
+        <motion.div className="hero__avatar-wrap" variants={fadeUp}>
+          <AnimatePresence mode="wait">
+            {isListening ? (
+              <motion.div
+                key="loader"
+                className="hero__loader"
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={loaderEnter}
+                exit={loaderExit}
+              >
+                <GooeyLoader
+                  primaryColor="#00b4ff"
+                  secondaryColor="#00e5ff"
+                  borderColor="rgba(0, 200, 255, 0.3)"
+                  size={300}
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="avatar"
+                className="hero__avatar"
+                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                animate={avatarEnter}
+                exit={avatarExit}
+              >
+                <img src="/0Z0A6044.jpg" alt={`${personal.name} portrait`} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }
