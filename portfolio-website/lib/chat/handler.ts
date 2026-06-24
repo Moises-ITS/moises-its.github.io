@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { ABOUT_MD, PROJECTS_MD } from "./context";
+import { ABOUT_MD, PROJECTS_MD } from "./context.js";
 import { ZodError } from "zod";
 import {
   parseChatRequest,
@@ -7,8 +7,8 @@ import {
   sanitizeAndValidateMessage,
   InjectionDetectedError,
   SanitizationError,
-} from "./schemas";
-import { checkRateLimit } from "./rate-limit-memory";
+} from "./schemas.js";
+import { checkRateLimit } from "./rate-limit-memory.js";
 
 let _openai: OpenAI | null = null;
 

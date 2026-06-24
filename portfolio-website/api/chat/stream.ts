@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { prepareStream, getOpenAIClient, FALLBACK_MESSAGE } from "../../lib/chat/handler";
-import { extractClientIp } from "../../lib/chat/rate-limit-memory";
+import { prepareStream, getOpenAIClient, FALLBACK_MESSAGE } from "../../lib/chat/handler.js";
+import { extractClientIp } from "../../lib/chat/rate-limit-memory.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -12,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (prep.errorBody) {
     if (prep.errorHeaders) {
-      for (const [key, value] of Object.entries(prep.errorHeaders)) {
+      for (const [key, value] of Object.entries(prep.errorHeaders) as [string, string][]) {
         res.setHeader(key, value);
       }
     }
