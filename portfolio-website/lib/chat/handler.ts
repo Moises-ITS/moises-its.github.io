@@ -118,13 +118,13 @@ export interface ChatHandlerResult {
 
 export async function handleChatRequest(
   body: unknown,
+  clientIp: string,
 ): Promise<ChatHandlerResult> {
   try {
     const { message } = parseChatRequest(body);
     const sanitized = sanitizeAndValidateMessage(message);
-    const sessionId = (body as { sessionId?: string })?.sessionId ?? "anonymous";
 
-    const rateLimit = checkRateLimit(sessionId);
+    const rateLimit = checkRateLimit(clientIp);
     if (!rateLimit.allowed) {
       return {
         status: 429,
@@ -187,20 +187,42 @@ export interface StreamPrepResult {
   errorBody?: Record<string, unknown>;
   errorHeaders?: Record<string, string>;
   streamMessages?: Array<{ role: "system" | "user"; content: string }>;
+  remaining?: number;
+  resetAt?: string;
 }
 
 export async function prepareStream(
   body: unknown,
+  clientIp: string,
 ): Promise<StreamPrepResult> {
   try {
     const { message } = parseChatRequest(body);
     const sanitized = sanitizeAndValidateMessage(message);
+
+    const rateLimit = checkRateLimit(clientIp);
+    if (!rateLimit.allowed) {
+      return {
+        status: 429,
+        errorHeaders: {
+          "X-RateLimit-Remaining": "0",
+          "X-RateLimit-Reset": rateLimit.resetAt.toISOString(),
+        },
+        errorBody: {
+          error: "Rate limit exceeded. You can ask 5 questions every 12 hours.",
+          type: "rate_limit",
+          remaining: 0,
+          resetAt: rateLimit.resetAt.toISOString(),
+        },
+      };
+    }
 
     const { about, projects } = loadContext();
     const systemPrompt = buildSystemPrompt(about, projects);
 
     return {
       status: 200,
+      remaining: rateLimit.remaining,
+      resetAt: rateLimit.resetAt.toISOString(),
       streamMessages: [
         { role: "system" as const, content: systemPrompt },
         { role: "user" as const, content: `<user_question>\n${sanitized}\n</user_question>` },

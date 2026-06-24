@@ -281,6 +281,34 @@ img {
   flex-direction: column;
 }
 
+.chatbot__rate-limit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.chatbot__rate-bar {
+  height: 3px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.chatbot__rate-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s var(--ease-spring), background-color 0.3s;
+}
+
+.chatbot__rate-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-align: right;
+  transition: color 0.3s;
+}
+
 .chatbot__messages {
   min-height: 80px;
   max-height: 280px;

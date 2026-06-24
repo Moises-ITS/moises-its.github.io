@@ -32,6 +32,7 @@ export const chatRequestSchema = z
         message:
           "Your message contains disallowed content. Please ask a question about Moises's work or background.",
       }),
+    sessionId: z.string().uuid().optional(),
   })
   .strict();
 

@@ -2,19 +2,28 @@ import dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
 
 import express from "express";
-import cors from "cors";
 import { handleChatRequest, prepareStream, getOpenAIClient, FALLBACK_MESSAGE } from "../lib/chat/handler";
+import { extractClientIp } from "../lib/chat/rate-limit-memory";
 
 const app = express();
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000", "http://localhost:3003"],
-  })
-);
+
+app.use((req: express.Request, res: express.Response, next: express.NextFunction): void => {
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin ?? "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Expose-Headers", "X-RateLimit-Remaining, X-RateLimit-Reset");
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+  next();
+});
+
 app.use(express.json({ limit: "4kb" }));
 
 app.post("/api/chat", async (req: express.Request, res: express.Response): Promise<void> => {
-  const result = await handleChatRequest(req.body);
+  const clientIp = extractClientIp(req.headers as Record<string, string | string[] | undefined>, req.socket?.remoteAddress);
+  const result = await handleChatRequest(req.body, clientIp);
 
   if (result.headers) {
     for (const [key, value] of Object.entries(result.headers)) {
@@ -26,7 +35,8 @@ app.post("/api/chat", async (req: express.Request, res: express.Response): Promi
 });
 
 app.post("/api/chat/stream", async (req: express.Request, res: express.Response): Promise<void> => {
-  const prep = await prepareStream(req.body);
+  const clientIp = extractClientIp(req.headers as Record<string, string | string[] | undefined>, req.socket?.remoteAddress);
+  const prep = await prepareStream(req.body, clientIp);
 
   if (prep.errorBody) {
     if (prep.errorHeaders) {
@@ -46,11 +56,19 @@ app.post("/api/chat/stream", async (req: express.Request, res: express.Response)
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
+  if (prep.remaining !== undefined) {
+    res.setHeader("X-RateLimit-Remaining", String(prep.remaining));
+  }
+  if (prep.resetAt) {
+    res.setHeader("X-RateLimit-Reset", prep.resetAt);
+  }
+
+  res.write(`data: ${JSON.stringify({ meta: { remaining: prep.remaining, resetAt: prep.resetAt } })}\n\n`);
 
   const stream = await getOpenAIClient().chat.completions.create({
     model: "gpt-4o-mini",
     temperature: 0.4,
-    max_tokens: 400,
+    max_tokens: 300,
     stream: true,
     messages: prep.streamMessages,
   });
