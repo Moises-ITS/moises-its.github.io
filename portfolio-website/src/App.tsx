@@ -6,6 +6,7 @@ import { Hero } from './components/Hero'
 import { Projects } from './components/Projects'
 import { Contact } from './components/Contact'
 import Aurora from './components/Aurora'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -50,6 +51,7 @@ export default function App() {
           </motion.button>
         )}
       </AnimatePresence>
+      <Analytics />
     </div>
   )
 }

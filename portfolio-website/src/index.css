@@ -939,46 +939,73 @@ img {
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
-    padding-bottom: 90px;
+    padding-bottom: 72px;
   }
 
   .dock-outer {
-    left: auto;
+    left: 0;
+    right: 0;
     top: auto;
     bottom: 0;
     transform: none;
     width: 100%;
+    height: auto;
   }
 
   .dock-panel {
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     width: 100% !important;
     border-radius: 0;
-    padding: 0 0.5rem 0.5rem;
-    justify-content: center;
+    padding: 0.5rem 1rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
   }
 
   .dock-label {
-    left: 50%;
-    top: -1.5rem;
-    transform: translateX(-50%);
+    display: none;
   }
 
   .section {
     padding: 3.5rem 1.5rem;
   }
 
+  .hero {
+    min-height: calc(100vh - 72px);
+    min-height: calc(100dvh - 72px);
+  }
+
   .hero__center {
     flex-direction: column;
     text-align: center;
-    padding: 3rem 1.5rem 2rem;
-    gap: 2rem;
+    padding: 2.5rem 1.5rem 2rem;
+    gap: 1.5rem;
   }
 
   .hero__text {
     text-align: center;
     align-items: center;
+    order: 1;
+  }
+
+  .hero__avatar-wrap {
+    order: 2;
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero__avatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero__chatbot {
+    max-width: 100%;
   }
 
   .skills-layout {
@@ -1019,14 +1046,18 @@ img {
   }
 
   .hero__center {
-    flex-direction: column;
-    padding: 2.5rem 1rem 1.5rem;
-    gap: 1.5rem;
+    padding: 2rem 1rem 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .hero__avatar-wrap {
+    width: 150px;
+    height: 150px;
   }
 
   .hero__avatar {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
   }
 
   .hero__greeting {

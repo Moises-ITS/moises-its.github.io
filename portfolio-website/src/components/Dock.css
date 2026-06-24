@@ -72,3 +72,39 @@
   color: #fff;
   transform: translateY(-50%);
 }
+
+@media (max-width: 768px) {
+  .dock-outer {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .dock-panel {
+    flex-direction: row;
+    align-items: center;
+    width: 100% !important;
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .dock-item {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .dock-label {
+    display: none !important;
+  }
+}
