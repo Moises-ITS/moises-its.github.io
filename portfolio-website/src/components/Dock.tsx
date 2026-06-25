@@ -129,8 +129,8 @@ export default function Dock({
     <div className="dock-outer">
       <div
         className={`dock-panel ${className}`}
-        onMouseMove={(e) => mouseY.set(e.pageY)}
-        onMouseLeave={() => mouseY.set(Infinity)}
+        onPointerMove={(e) => mouseY.set(e.pageY)}
+        onPointerLeave={() => mouseY.set(Infinity)}
         role="toolbar"
         aria-label="Application dock"
       >
