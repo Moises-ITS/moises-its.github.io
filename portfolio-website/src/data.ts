@@ -78,8 +78,7 @@ export const projects: Project[] = [
     summary:
       'AI agent connected to your hotel room that answers questions from hotel\'s RAG database and defers questions and actions to operators in hotel system',
     stack: ['React', 'TypeScript', 'ElevenLabs', 'Anthropic API'],
-    // TODO: replace with the Landline repo URL when available
-    repo: 'https://github.com/Moises-ITS',
+    repo: 'https://github.com/Moises-ITS/Landline',
     image: '/projects/landline.jpg',
     accent: 'cyan',
   },
