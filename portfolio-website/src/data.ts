@@ -4,10 +4,9 @@ export const personal: PersonalInfo = {
   name: 'Moises Zuniga',
   firstName: 'Moises',
   lastName: 'Zuniga',
-  titleLine: 'CS + AI Student @ NJIT',
+  titleLine: 'CS + AI Student · NJIT',
   location: 'Nutley, New Jersey',
   email: 'mz397@njit.edu',
-  emailMailto: 'mailto:mz397@njit.edu?subject=Portfolio%20Inquiry',
   github: 'https://github.com/Moises-ITS',
   githubHandle: 'github.com/Moises-ITS',
   linkedin: 'https://www.linkedin.com/in/moiseszuniga',
@@ -27,8 +26,6 @@ export const projects: Project[] = [
     summary:
       'A production-level student engagement platform for NJIT\'s SHPE chapter with posts, events, and leaderboards',
     stack: ['React Native', 'TypeScript', 'Expo', 'Supabase', 'GitHub Actions'],
-    repo: 'https://apps.apple.com/cl/app/shpe-njit/id6757627370',
-    image: '/projects/shpe_app.jpg',
     accent: 'cyan',
   },
   {
@@ -40,8 +37,6 @@ export const projects: Project[] = [
     summary:
       'A full-stack platform built at the Bank of America Code-A-Thon that uses graph data structures to model relationships between students, companies, and opportunities.',
     stack: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Neo4j', 'FastAPI', 'Clerk'],
-    repo: 'https://jit-hub.com/',
-    image: '/projects/jithub.jpg',
     accent: 'violet',
   },
   {
@@ -52,9 +47,8 @@ export const projects: Project[] = [
     year: '2026',
     summary:
       'An end-to-end ML pipeline for network traffic classification — detecting malicious events across hundreds of thousands of packet logs with high precision.',
-    repo: 'https://github.com/anshul-kumar1/NeuralAdaptive',
-    image: '/projects/iris.jpg',
-    stack: ['OpenAI API', 'JavaScript', 'MediaPipe Iris', 'FaceMesh'],
+    repo: 'https://github.com/Moises-ITS/Machine-Learning-Packet-Inspector-V2',
+    stack: ['Python', 'Scikit-Learn', 'XGBoost', 'Pandas', 'NumPy'],
     accent: 'blue',
   },
   {
@@ -65,9 +59,32 @@ export const projects: Project[] = [
     year: '2026',
     summary:
       'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
-    stack: ['Typescript', 'React', 'Miro', 'Kiro'],
-    repo: 'https://github.com/Moises-ITS/MOAT',
-    image: '/projects/miroxkiro.PNG',
+    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
+    repo: 'https://github.com/Moises-ITS/CloudSecurity',
+    accent: 'red',
+  },
+  {
+    id: 'miroxkiro',
+    number: '05',
+    title: 'MOAT - MiroXKiro Hackathon',
+    category: 'DevOps · Cloud Security',
+    year: '2026',
+    summary:
+      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
+    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
+    repo: 'https://github.com/Moises-ITS/CloudSecurity',
+    accent: 'red',
+  },
+  {
+    id: 'miroxkiro',
+    number: '06',
+    title: 'MOAT - MiroXKiro Hackathon',
+    category: 'DevOps · Cloud Security',
+    year: '2026',
+    summary:
+      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
+    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
+    repo: 'https://github.com/Moises-ITS/CloudSecurity',
     accent: 'red',
   },
 ]

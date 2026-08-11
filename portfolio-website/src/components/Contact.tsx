@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, FileText, Mail, MapPin } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { personal } from '../data'
 
@@ -55,6 +55,15 @@ const contactLinks = [
     href: personal.linkedin,
     cta: 'Connect with me',
     icon: <LinkedinIcon size={22} aria-hidden="true" />,
+    external: true,
+  },
+  {
+    type: 'resume' as const,
+    label: 'Resume',
+    value: 'resume.pdf',
+    href: '/resume.pdf',
+    cta: 'View my resume',
+    icon: <FileText size={22} aria-hidden="true" />,
     external: true,
   },
 ]

@@ -743,7 +743,7 @@ img {
 
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -790,6 +790,10 @@ img {
 
 .contact-card--linkedin {
   --card-accent: var(--cyan);
+}
+
+.contact-card--resume {
+  --card-accent: var(--accent);
 }
 
 .contact-card:hover {
