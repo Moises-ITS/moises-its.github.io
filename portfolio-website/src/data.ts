@@ -26,6 +26,8 @@ export const projects: Project[] = [
     summary:
       'A production-level student engagement platform for NJIT\'s SHPE chapter with posts, events, and leaderboards',
     stack: ['React Native', 'TypeScript', 'Expo', 'Supabase', 'GitHub Actions'],
+    repo: 'https://apps.apple.com/cl/app/shpe-njit/id6757627370',
+    image: '/projects/shpe_app.jpg',
     accent: 'cyan',
   },
   {
@@ -37,6 +39,8 @@ export const projects: Project[] = [
     summary:
       'A full-stack platform built at the Bank of America Code-A-Thon that uses graph data structures to model relationships between students, companies, and opportunities.',
     stack: ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Neo4j', 'FastAPI', 'Clerk'],
+    repo: 'https://jit-hub.com/',
+    image: '/projects/jithub.jpg',
     accent: 'violet',
   },
   {
@@ -46,46 +50,37 @@ export const projects: Project[] = [
     category: 'Computer Vision · Chrome Extension',
     year: '2026',
     summary:
-      'An end-to-end ML pipeline for network traffic classification — detecting malicious events across hundreds of thousands of packet logs with high precision.',
-    repo: 'https://github.com/Moises-ITS/Machine-Learning-Packet-Inspector-V2',
-    stack: ['Python', 'Scikit-Learn', 'XGBoost', 'Pandas', 'NumPy'],
+      'A google chrome extension that adapts pages, articles and blogs to YOUR needs',
+    repo: 'https://github.com/anshul-kumar1/NeuralAdaptive',
+    image: '/projects/iris.jpg',
+    stack: ['JavaScript', 'MediaPipe Face Mesh', 'Computer Vision', 'Eye-tracking'],
     accent: 'blue',
   },
   {
     id: 'miroxkiro',
     number: '04',
     title: 'MOAT - MiroXKiro Hackathon',
-    category: 'DevOps · Cloud Security',
+    category: 'AI Agents · Automation',
     year: '2026',
     summary:
-      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
-    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
-    repo: 'https://github.com/Moises-ITS/CloudSecurity',
+      'AI agent that finds startup opportunities in your area and drafts/sends outreach for you',
+    stack: ['Miro', 'Kiro', 'TypeScript', 'React', 'Anthropic API'],
+    repo: 'https://github.com/Moises-ITS/MOAT',
+    image: '/projects/miroxkiro.PNG',
     accent: 'red',
   },
   {
-    id: 'miroxkiro',
+    id: 'landline',
     number: '05',
-    title: 'MOAT - MiroXKiro Hackathon',
-    category: 'DevOps · Cloud Security',
+    title: 'Landline - Travel & Hospitality Hackathon',
+    category: 'AI Agents · Voice',
     year: '2026',
     summary:
-      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
-    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
-    repo: 'https://github.com/Moises-ITS/CloudSecurity',
-    accent: 'red',
-  },
-  {
-    id: 'miroxkiro',
-    number: '06',
-    title: 'MOAT - MiroXKiro Hackathon',
-    category: 'DevOps · Cloud Security',
-    year: '2026',
-    summary:
-      'An end-to-end DevSecOps pipeline with automated SAST/SCA/IaC scanning, real-time cloud misconfig remediation, and secret detection — blocking vulnerabilities before they reach production.',
-    stack: ['Python', 'AWS', 'Terraform', 'GitHub Actions', 'Docker', 'Lambda', 'IAM'],
-    repo: 'https://github.com/Moises-ITS/CloudSecurity',
-    accent: 'red',
+      'AI agent connected to your hotel room that answers questions from hotel\'s RAG database and defers questions and actions to operators in hotel system',
+    stack: ['React', 'TypeScript', 'ElevenLabs', 'Anthropic API'],
+    repo: 'https://github.com/Moises-ITS/Landline',
+    image: '/projects/landline.jpg',
+    accent: 'cyan',
   },
 ]
 
