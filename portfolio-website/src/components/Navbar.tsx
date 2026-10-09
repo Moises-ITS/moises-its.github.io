@@ -22,9 +22,8 @@ export function Navbar() {
   return (
     <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`} aria-label="Primary">
       <div className="nav__inner">
-        <a href="#top" className="nav__brand" onClick={handleClick('#top')}>
-          <img src="/profile-avatar.jpg" alt="" className="nav__avatar" width={36} height={36} />
-          <span className="nav__name">Moises Zuniga</span>
+        <a href="#top" className="nav__brand" onClick={handleClick('#top')} aria-label="Moises Zuniga — back to top">
+          <span className="nav__name">NYC · NJ</span>
         </a>
         <ul className="nav__links">
           {LINKS.map(({ href, label }) => {

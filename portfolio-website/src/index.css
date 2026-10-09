@@ -185,11 +185,6 @@ img {
   border-bottom-color: var(--border);
 }
 
-.nav--scrolled .nav__avatar {
-  width: 28px;
-  height: 28px;
-}
-
 .nav--scrolled .nav__name {
   font-size: 15px;
 }
@@ -224,14 +219,6 @@ img {
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
-}
-
-.nav__avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  transition: width 0.4s var(--ease), height 0.4s var(--ease);
 }
 
 .nav__name {
