@@ -5,12 +5,14 @@ export interface Project {
   category: string
   year: string
   summary: string
+  /** Longer write-up shown when the card is opened; falls back to `summary` */
+  description?: string
   stack: string[]
   /** GitHub repo URL — update in data.ts when ready */
   repo: string
   /** Optional preview image — place file in public/projects/ then set path, e.g. `/projects/shpe-app.jpg` */
   image?: string
-  accent: 'blue' | 'violet' | 'cyan' | 'red'
+  accent?: 'blue' | 'violet' | 'cyan' | 'red'
 }
 
 export interface SkillGroup {
@@ -23,6 +25,8 @@ export interface PersonalInfo {
   firstName: string
   lastName: string
   titleLine: string
+  /** Roles typed out under the name in the hero, in order */
+  roles: string[]
   location: string
   email: string
   emailMailto: string
