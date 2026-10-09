@@ -17,11 +17,11 @@ const injectedStyles = `
     background: transparent;
   }
   textarea::-webkit-scrollbar-thumb {
-    background-color: #444444;
+    background-color: rgba(0,0,0,0.15);
     border-radius: 3px;
   }
   textarea::-webkit-scrollbar-thumb:hover {
-    background-color: #555555;
+    background-color: rgba(0,0,0,0.25);
   }
 `;
 
@@ -40,7 +40,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, ...props }, ref) => (
   <textarea
     className={cn(
-      "flex w-full rounded-md border-none bg-transparent px-3 py-2.5 text-base text-gray-100 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px] resize-none scrollbar-thin scrollbar-thumb-[#444444] scrollbar-track-transparent hover:scrollbar-thumb-[#555555]",
+      "flex w-full rounded-md border-none bg-transparent px-3 py-2.5 text-base text-[#1d1d1f] placeholder:text-[#86868b] focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 min-h-[44px] resize-none scrollbar-thin scrollbar-thumb-[rgba(0,0,0,0.15)] scrollbar-track-transparent hover:scrollbar-thumb-[rgba(0,0,0,0.25)]",
       className
     )}
     ref={ref}
@@ -61,7 +61,7 @@ const TooltipContent = React.forwardRef<
     ref={ref}
     sideOffset={sideOffset}
     className={cn(
-      "z-50 overflow-hidden rounded-md border border-[#333333] bg-[#1F2023] px-3 py-1.5 text-sm text-white shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      "z-50 overflow-hidden rounded-md bg-[#1d1d1f] px-3 py-1.5 text-xs text-white shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
       className
     )}
     {...props}
@@ -116,13 +116,13 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
     >
       <div className="flex items-center gap-2 mb-3">
         <div className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-        <span className="font-mono text-sm text-white/80">{formatTime(time)}</span>
+        <span className="font-mono text-sm text-[#6e6e73]">{formatTime(time)}</span>
       </div>
       <div className="w-full h-10 flex items-center justify-center gap-0.5 px-4">
         {[...Array(visualizerBars)].map((_, i) => (
           <div
             key={i}
-            className="w-0.5 rounded-full bg-white/50 animate-pulse"
+            className="w-0.5 rounded-full bg-[#0071e3]/60 animate-pulse"
             style={{
               height: `${Math.max(15, Math.random() * 100)}%`,
               animationDelay: `${i * 0.05}s`,
@@ -205,8 +205,8 @@ const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
             className={cn(
               "transition-all duration-300",
               embedded
-                ? "rounded-full border border-[#333333] bg-[#1F2023] shadow-none"
-                : "rounded-2xl border border-[#444444] bg-[#1F2023] shadow-[0_8px_30px_rgba(0,0,0,0.24)]",
+                ? "rounded-full border border-black/10 bg-[#f5f5f7] shadow-none"
+                : "rounded-2xl border border-black/10 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)]",
               isLoading && "border-red-500/70",
               className
             )}
@@ -419,8 +419,8 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
       onSubmit={handleSubmit}
       embedded={embedded}
       className={cn(
-        "w-full bg-[#1F2023] transition-all duration-300 ease-in-out",
-        embedded ? "border-[#333333] shadow-none" : "border-[#444444] shadow-[0_8px_30px_rgba(0,0,0,0.24)]",
+        "w-full bg-[#f5f5f7] transition-all duration-300 ease-in-out focus-within:border-[#0071e3]/50",
+        embedded ? "border-black/10 shadow-none" : "border-black/10 shadow-[0_8px_30px_rgba(0,0,0,0.06)]",
         isRecording && "border-red-500/70",
         className
       )}
@@ -442,7 +442,7 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
           >
             <PromptInputTextarea
               placeholder={placeholder}
-              className={cn("text-base", embedded && "min-h-[36px] py-2 px-0 placeholder:text-[#6B7280]")}
+              className={cn("text-base", embedded && "min-h-[36px] py-2 px-0 placeholder:text-[#86868b]")}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
@@ -465,12 +465,12 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
                 "inline-flex items-center justify-center rounded-full border-2 font-medium transition-colors focus-visible:outline-none",
                 embedded ? "h-8 w-8" : "h-9 w-9",
                 isRecording
-                  ? "border-transparent bg-transparent text-red-500 hover:bg-gray-600/30 hover:text-red-400"
+                  ? "border-transparent bg-transparent text-red-500 hover:bg-black/5 hover:text-red-600"
                   : showSend && canSend
-                  ? "border-[#333333] bg-white text-[#1F2023] hover:bg-white/80 shadow-[0_0_0_0_rgba(139,92,246,0)] hover:shadow-[0_0_12px_rgba(139,92,246,0.3)]"
+                  ? "border-transparent bg-[#0071e3] text-white hover:bg-[#0077ed]"
                   : showSend
-                  ? "cursor-not-allowed border-[#333333] bg-white/50 text-[#1F2023] opacity-50"
-                  : "border-[#333333] bg-white text-[#1F2023] hover:bg-white/80"
+                  ? "cursor-not-allowed border-transparent bg-[#0071e3] text-white opacity-30"
+                  : "border-transparent bg-[#1d1d1f] text-white hover:bg-black"
               )}
               onClick={handleActionClick}
               disabled={isActionDisabled}
@@ -495,7 +495,7 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               {isLoading ? (
-                <Square className="h-4 w-4 fill-[#1F2023] animate-pulse" />
+                <Square className="h-4 w-4 fill-white animate-pulse" />
               ) : isRecording ? (
                 <StopCircle className="h-5 w-5 text-red-500" />
               ) : (
@@ -509,7 +509,7 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
                       transition={iconTransition}
                       className="flex items-center justify-center"
                     >
-                      <ArrowUp className="h-4 w-4 text-[#1F2023]" />
+                      <ArrowUp className="h-4 w-4 text-white" />
                     </motion.span>
                   ) : (
                     <motion.span
@@ -520,7 +520,7 @@ export const PromptInputBox = React.forwardRef((props: PromptInputBoxProps, ref:
                       transition={iconTransition}
                       className="flex items-center justify-center"
                     >
-                      <Mic className={cn("text-[#1F2023]", embedded ? "h-4 w-4" : "h-5 w-5")} />
+                      <Mic className={cn("text-white", embedded ? "h-4 w-4" : "h-5 w-5")} />
                     </motion.span>
                   )}
                 </AnimatePresence>

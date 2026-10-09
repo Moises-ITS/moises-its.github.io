@@ -95,6 +95,66 @@
 
 ---
 
+## Market Pipeline — Real-Time Market Data Pipeline + Low-Latency API
+
+**What it is:** A system that ingests a live crypto trade feed (Coinbase WebSocket), stores it across latency-appropriate tiers, and serves it through an async API — REST for point-in-time and historical reads, WebSocket for live push. Repo: github.com/Moises-ITS/marketpipeline
+
+**Stack:** Python (asyncio), FastAPI + uvicorn, Redis (hash cache, Streams, Pub/Sub), TimescaleDB (hypertable + continuous aggregates), Docker Compose, Locust for load testing, pytest (54 tests).
+
+**Architecture:** Two processes on purpose — an ingest worker and the API — because they fail differently: a burst of API traffic must not delay a tick, and a stalled database flush must not make health checks time out. Each tick is written to a Redis hash (hot cache for the latest price), a capped Redis Stream (recent history), Redis Pub/Sub (live fan-out to WebSocket clients), and batched `COPY` into TimescaleDB (durable history). OHLCV candles come from a TimescaleDB continuous aggregate instead of being computed per request — on 1.84M ticks a 24-hour range dropped from 112 ms to 0.78 ms.
+
+**Results:** The latest-price endpoint serves at ~5 ms p50 with 100 concurrent users on 4 API workers, and reached 4,187 requests/sec at 200 users on 8 workers. The whole system runs from one `docker compose up`.
+
+**What the benchmarks taught me:** The first benchmark was invalid — the load generator itself was the bottleneck, so I moved to a distributed Locust setup. An optimization the plan predicted (moving history reads to Redis Streams) didn't pay off the expected way under mixed load, and I documented that honestly rather than hiding it. The real bottleneck turned out to be the single Python API process; because the API is stateless, running 4 uvicorn workers lifted throughput 56% and cut hot-path p50 from 24 ms to 5 ms.
+
+**Deliberately deferred:** Kafka (Redis Streams gives the same ordered-log shape at a fraction of the operational weight at this volume), multi-exchange aggregation, L2 order book depth, and auth.
+
+---
+
+## SoFi It — SoFi Externship (Presented to SoFi Banking Executives)
+
+**What it is:** A mobile-first demo app built during the SoFi Externship program and presented to SoFi banking executives. You snap a photo of something you want, and an AI agent identifies the product, prices it, and builds a SoFi Vault savings plan to buy it. Live demo: sofidemo.vercel.app · Repo: github.com/Moises-ITS/sofidemo
+
+**Stack:** React, TypeScript, Vite, a Node recognition server (deployed as a Vercel serverless function), Claude vision and OpenAI vision, optional SerpAPI for live Google Shopping prices.
+
+**How it works:** The capture screen grabs a downscaled JPEG frame from the phone camera and posts it to a recognition endpoint. The server asks a vision model to identify the product using schema-constrained JSON output (label, emoji, search query, price, low/high price range), so the response always parses. It supports both Claude structured outputs and OpenAI strict JSON-schema mode, selectable by config. Pricing runs in two modes: an agent price estimate by default, or real retailer listings from Google Shopping (best price, sticker price, retailer count) when a SerpAPI key is set.
+
+**Designed for a live pitch:** If the vision call fails for any reason (no key, offline, timeout), the app falls back to a canned demo product so the presentation flow never breaks. Camera access needs a secure context, so the demo runs on the HTTPS Vercel deployment and works from any phone.
+
+---
+
+## Options Pricing Engine (In Progress)
+
+**What it is:** A from-scratch C++20 options pricing library: Black-Scholes-Merton closed form with analytic Greeks, an implied-volatility solver (Newton with a Brent fallback), and a multithreaded Monte Carlo engine for path-dependent payoffs (European, Asian, Barrier) — to be benchmarked against Python. Repo: github.com/Moises-ITS/Options-Pricing-Engine
+
+**Status (be accurate about this):** In progress. The numerical foundations are done and tested — normal CDF/PDF and inverse CDF, a xoshiro256++ RNG with non-overlapping streams, and Welford online variance. The pricing models, variance reduction, Sobol quasi-Monte Carlo, threading, and the Python benchmark are still being built. No benchmark numbers exist yet; every number will be measured, not estimated.
+
+**Why I built it:** Two things are easy to claim and hard to fake — that you can write real C++, and that you understand what the code is computing. The project is built so both are checkable: numerics validated against closed-form references, benchmark methodology written down, and design decisions with reasons attached.
+
+**Design decisions I made:** `norm_cdf` uses `erfc` instead of `erf`, because the textbook formula cancels catastrophically in the left tail where deep out-of-the-money options live (full precision verified down to Φ(−10) ≈ 7.6e-24). Normals come from inverse transform rather than Box-Muller, because Box-Muller silently destroys Sobol's low-discrepancy structure. Variance uses Welford rather than sum-of-squares, which can return a negative variance at 10⁷ paths, and Welford's merge rule lets each thread accumulate with no locking. RNG streams belong to path blocks, not threads, so results are identical on 1 thread or 12. No `-ffast-math`, since it would undo the tail accuracy and cancellation avoidance the project is built around.
+
+**Testing:** ~2M assertions with no external test framework, so it builds from a bare compiler. Beyond reference values, the suite checks properties: put-call parity, Greeks against finite differences, RNG stream non-overlap, thread-count invariance, and Monte Carlo convergence to the closed form within three standard errors.
+
+**Known limitations:** No American options (would need Longstaff-Schwartz), constant volatility and rates, continuous dividend yield only, and discrete barrier monitoring with a Broadie-Glasserman-Kou correction.
+
+---
+
+## CUDA Monte Carlo Pricer (Benchmarks Pending)
+
+**What it is:** A CUDA Monte Carlo pricer for European options, benchmarked against CPU baselines and validated against the closed-form Black-Scholes price. Repo: github.com/Moises-ITS/cuda-monte-carlo
+
+**Status (be accurate about this):** All five implementations are built, but the benchmark results table and profiling findings are still TBD — there are no measured speedup numbers yet. Don't quote any. Target hardware is an RTX 2060 6GB with a Ryzen 5 3600; it also runs on a Google Colab T4.
+
+**Why GPUs:** Monte Carlo is close to the ideal GPU workload — every simulated path is independent and only the final average needs communication. The interesting engineering is in what's left: generating good random numbers in parallel, and reducing billions of payoffs without memory or atomics becoming the bottleneck.
+
+**Correctness first:** It prices an option with a known closed-form answer (S=100, K=100, r=5%, σ=20%, T=1 → call 10.4506, put 5.5735). Every implementation must land within ~3 standard errors of the exact price; landing outside that is treated as evidence of a bug (correlated RNG, precision loss, a race), not bad luck. The harness also warns on implausible results like sub-0.1 ms kernels or >30B paths/sec. Because geometric Brownian motion has an exact solution, a European option can jump straight to maturity in one step with no discretization error.
+
+**Five implementations:** `cpu_single` (textbook mt19937 baseline), `cpu_fast` (xoshiro256** + Box-Muller, isolating RNG cost), `cpu_omp` (all cores via OpenMP with independent jump-ahead RNG streams — the fair CPU comparison), `gpu_naive` (one thread per path, every payoff written to global memory then a Thrust reduction — deliberately unoptimized), and `gpu_opt` (Philox RNG, occupancy-sized grid-stride loop, register accumulation, warp-shuffle → shared memory → one atomicAdd per block, with no per-path DRAM traffic). Profiled with Nsight Compute: the contrast in DRAM throughput between the naive and optimized kernels is the whole story of the optimization.
+
+**Roadmap:** Antithetic variates, a control variate on S_T, pathwise Greeks (delta, vega), an arithmetic Asian option with 252 steps, and an FP64 vs FP32 comparison.
+
+---
+
 ## Earlier Work (Context)
 
 Before pivoting fully into software engineering and AI, I built a SIEM SOC monitoring platform, a cloud DevSecOps pipeline (AWS, Terraform, Docker), and an ML packet analyzer as part of an early interest in cybersecurity. Those projects gave me a strong foundation in infrastructure and systems thinking that still shows up in how I architect things today.

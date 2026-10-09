@@ -1,67 +1,67 @@
-import { useState, useEffect, useMemo } from 'react'
-import { Home, Briefcase, Mail } from 'lucide-react'
-import Dock from './Dock'
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
+import { scrollToSection, useActiveSection } from '../navigation'
 
-const SECTION_IDS = ['top', 'projects', 'contact']
-
-function scrollTo(href: string) {
-  const id = href.replace('#', '')
-  const el = document.getElementById(id)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
-  } else if (id === 'top') {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-}
+const LINKS = [
+  { href: '#work', label: 'Work' },
+  { href: '#contact', label: 'Contact' },
+]
 
 export function Navbar() {
-  const [activeSection, setActiveSection] = useState('#top')
+  const reduced = useReducedMotion() ?? false
+  const { activeSection, scrolled } = useActiveSection()
 
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollY = window.scrollY + window.innerHeight / 3
+  // reading progress: a thin line along the bottom of the bar
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 })
 
-      for (let i = SECTION_IDS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTION_IDS[i])
-        if (el && el.offsetTop <= scrollY) {
-          setActiveSection(`#${SECTION_IDS[i]}`)
-          return
-        }
-      }
-      setActiveSection('#top')
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const items = useMemo(() => [
-    {
-      icon: <Home size={18} />,
-      label: 'Home',
-      onClick: () => scrollTo('#top'),
-      className: activeSection === '#top' ? 'dock-item--active' : '',
-    },
-    {
-      icon: <Briefcase size={18} />,
-      label: 'Portfolio',
-      onClick: () => scrollTo('#projects'),
-      className: activeSection === '#projects' ? 'dock-item--active' : '',
-    },
-    {
-      icon: <Mail size={18} />,
-      label: 'Contact',
-      onClick: () => scrollTo('#contact'),
-      className: activeSection === '#contact' ? 'dock-item--active' : '',
-    },
-  ], [activeSection])
+  const handleClick = (href: string) => (e: React.MouseEvent) => {
+    e.preventDefault()
+    scrollToSection(href)
+  }
 
   return (
-    <Dock
-      items={items}
-      baseItemSize={50}
-      magnification={70}
-    />
+    <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`} aria-label="Primary">
+      <div className="nav__inner">
+        <a href="#top" className="nav__brand" onClick={handleClick('#top')}>
+          <img src="/profile-avatar.jpg" alt="" className="nav__avatar" width={36} height={36} />
+          <span className="nav__name">Moises Zuniga</span>
+        </a>
+        <ul className="nav__links">
+          {LINKS.map(({ href, label }) => {
+            const active = activeSection === href
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={handleClick(href)}
+                  className={`nav__link${active ? ' nav__link--active' : ''}`}
+                  aria-current={active ? 'true' : undefined}
+                >
+                  {/* pill that slides between links as the active section changes */}
+                  {active && (
+                    <motion.span
+                      layoutId={reduced ? undefined : 'nav-active'}
+                      className="nav__pill"
+                      transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                    />
+                  )}
+                  <span className="nav__link-label">{label}</span>
+                </a>
+              </li>
+            )
+          })}
+          <li>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="nav__link">
+              <span className="nav__link-label">Resume</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <motion.span
+        className="nav__progress"
+        aria-hidden="true"
+        style={{ scaleX: reduced ? scrollYProgress : progress }}
+      />
+    </nav>
   )
 }
